@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#50000000</color>
+    <color name="dark_gray">#1e1e1e</color>
+    <color name="light_gray">#20000000</color>
+    <color name="green">#2DB653</color>
+    <color name="yellow">#EAAA00</color>
+    <color name="darker_grey">#8e8e8e</color>
+    <color name="red">#EA4468</color>
+    <color name="bluegray">#3E1766</color>
+    <color name="orange">#E67614</color>
+    <color name="red_dark">#FF0000</color>
+    <color name="cyan">#D5F3F1</color>
+    <color name="cyantext">#1BBDB2</color>
+    <color name="grey">#D7DBDD</color>
+    <color name="blue">#318CE7</color>
+    <color name="green_cus">#BACF35</color>
+
+    <!--extra-->
+    <color name="jungleGreen">#24988D</color>
+    <color name="colorPrimary">@color/jungleGreen</color>
+    <color name="colorButtonBackground">@color/colorPrimary</color>
+</resources>

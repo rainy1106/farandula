@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+    <TextView
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_weight="1"
+            android:id="@+id/sublistView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
+            android:paddingTop="@dimen/_10sdp"
+            android:text="dfsdfsfsdfsf"
+            android:textSize="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:textColor="@android:color/white" />
+
+</LinearLayout>

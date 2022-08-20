@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="listener"
+                type="com.mtc.order.PaymentInformationAdapter" />
+
+        <variable
+                name="viewModel"
+                type="com.mtc.order.ConfirmOrderListViewModel" />
+    </data>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp">
+
+        <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/freetextView"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.6"
+                            android:layout_height="wrap_content"
+                            android:text="@string/payment_informations"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
+
+                    <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/bellOnClick"
+                            android:src="@drawable/ic_bell"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp" />
+
+                    <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/kitchenMessageLayoutId"
+                            android:padding="@dimen/_4sdp"
+                            android:background="@drawable/round_background_yellow"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                android:id="@+id/kitchenMessage"
+                                android:textSize="@dimen/_10sdp"
+                                android:textColor="@color/white"
+                                android:gravity="center"
+                                android:text="You have message from kitchen !!"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <!-- <Button
+                             android:id="@+id/onClickNeedHelp"
+                             android:layout_width="wrap_content"
+                             android:layout_gravity="end"
+                             android:layout_marginEnd="@dimen/_5sdp"
+                             android:layout_marginStart="@dimen/_10sdp"
+                             android:layout_height="wrap_content"
+                             android:background="@drawable/button_selector_effect_reverse"
+                             android:paddingStart="@dimen/_8sdp"
+                             android:paddingEnd="@dimen/_8sdp"
+                             android:paddingTop="@dimen/_6sdp"
+                             android:paddingBottom="@dimen/_6sdp"
+                             android:text="@string/message"
+                             android:textColor="@color/text_selector_effect"
+                             android:textSize="@dimen/_8sdp"
+                             android:textStyle="bold" />-->
+                </LinearLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewConfirmPaymentInformation"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_below="@+id/freetextView"
+                        android:layoutAnimation="@anim/layout_animation_slide_bottom"
+                        android:background="@drawable/round_background_white"
+                        android:backgroundTint="#10000000" />
+
+                <LinearLayout
+                        android:id="@+id/freelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recyclerViewConfirmPaymentInformation"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:background="@drawable/two_corner_bottom_round_black"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp">
+
+                    <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/total"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:id="@+id/totalCost"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/freelayout"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                    <Button
+                            android:id="@+id/onClickAddMoreList"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_selector_effect_reverse"
+                            android:gravity="center"
+                            android:padding="@dimen/_6sdp"
+                            android:text="@string/add_more_items"
+                            android:textColor="@color/text_selector_effect"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/_8sdp" />
+
+                    <Button
+                            android:id="@+id/onClickPlaceOrder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_selector_effect_reverse"
+                            android:textColor="@color/text_selector_effect"
+                            android:gravity="center"
+                            android:padding="@dimen/_6sdp"
+                            android:text="@string/proceed_to_payment"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/_8sdp" />
+                    <!-- android:backgroundTint="#999999"
+                     android:textColor="#cccccc"-->
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/sendInstructionButton"
+                        android:weightSum="1"
+                        android:padding="@dimen/_3sdp"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_background_yellow">
+
+                    <LinearLayout
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                        <ImageView
+                                android:layout_marginStart="@dimen/_12sdp"
+                                android:background="@drawable/ic_chat"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp" />
+
+                        <TextView
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:id="@+id/send"
+                                android:layout_marginTop="-4dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="@string/send_instructions_to_kitchen_staff"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
+                                android:textStyle="bold" />
+                    </LinearLayout>
+
+
+                    <ImageView
+                            android:src="@drawable/arrow"
+                            android:layout_width="@dimen/_12sdp"
+                            android:layout_height="@dimen/_12sdp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+                android:layout_weight="2.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:background="@drawable/chefimages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

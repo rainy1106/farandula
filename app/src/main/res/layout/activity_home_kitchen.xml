@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <!--<variable
+            name="viewModel"
+            type="com.mtc.home.HomeViewModel" />-->
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            tools:context=".home.HomeActivity">
+
+        <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:background="@color/black"
+                android:orientation="vertical">
+
+            <ImageView
+                    android:id="@+id/freeimage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_90sdp"
+                    android:scaleType="fitXY"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg">
+
+                <!-- <ImageView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginStart="@dimen/_15sdp"
+                         android:layout_marginEnd="@dimen/_15sdp"
+                         android:src="@drawable/bg_logo" />-->
+            </ImageView>
+
+
+            <!--specials-->
+            <LinearLayout
+                    android:id="@+id/orderLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/freeimage"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_4sdp"
+                    android:weightSum="1">
+
+                <ImageView
+                        android:id="@+id/orderImageView"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/order_black" />
+
+                <TextView
+                        android:id="@+id/orderTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="@string/orders"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp" />
+
+                <ImageView
+                        android:id="@+id/orderArrow"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:src="@drawable/next_arrow_white" />
+            </LinearLayout>
+
+            <!--/specials-->
+            <View
+                    android:id="@+id/firstView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_below="@+id/orderLayout"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/dark_gray" />
+
+            <!--breakfast-->
+            <LinearLayout
+                    android:id="@+id/chatLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/secondView"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_4sdp"
+                    android:weightSum="1">
+
+                <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottie_main_bell"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="bell.json"
+                        app:lottie_loop="true"
+                        android:visibility="gone"
+                        app:lottie_speed="1" />
+
+                <ImageView
+                        android:visibility="visible"
+                        android:id="@+id/chatImageView"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/ic_chat" />
+
+                <TextView
+                        android:id="@+id/chatTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="@string/message"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                <ImageView
+                        android:id="@+id/chatArrow"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:src="@drawable/next_arrow_white" />
+            </LinearLayout>
+            <!--/breakfast-->
+            <View
+                    android:id="@+id/secondView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_below="@+id/orderHistoryLayout"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/dark_gray" />
+
+            <!--lunch-->
+            <LinearLayout
+                    android:id="@+id/orderHistoryLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firstView"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_4sdp"
+                    android:weightSum="1">
+
+                <ImageView
+                        android:id="@+id/orderHistoryImageView"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/history_white" />
+
+                <TextView
+                        android:id="@+id/orderHistoryTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="@string/order_history"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp" />
+
+                <ImageView
+                        android:id="@+id/orderHistoryArrow"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:src="@drawable/next_arrow_white" />
+            </LinearLayout>
+            <!--/lunch-->
+            <View
+                    android:id="@+id/belowchatid"
+                    android:layout_below="@id/chatLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@color/dark_gray" />
+
+            <!--notifications-->
+            <!--lunch-->
+            <LinearLayout
+                    android:id="@+id/notificationLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/belowchatid"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_4sdp"
+                    android:weightSum="1">
+
+                <ImageView
+                        android:id="@+id/notificationImageView"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/ic_notification_icon_white" />
+
+                <TextView
+                        android:id="@+id/notificationTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="@string/notificaitons"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp" />
+
+                <ImageView
+                        android:id="@+id/notificaiotnArrow"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:src="@drawable/next_arrow_white" />
+            </LinearLayout>
+
+            <View
+                    android:layout_below="@id/notificationLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@color/dark_gray" />
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:background="@drawable/round_background_white">
+
+            <ImageView
+                    android:id="@+id/freeimage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+
+            <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/freeimage1" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

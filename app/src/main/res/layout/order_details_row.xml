@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.mtc.kitchen.OrderListItem.Cart" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                    android:shadowColor="@color/light_gray"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:cardElevation="@dimen/_2sdp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/itemImage"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:baselineAligned="false"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bg"
+                        app:riv_border_color="@android:color/transparent"
+                        app:riv_corner_radius="@dimen/_5sdp"
+                        app:riv_mutate_background="true"
+                        app:riv_oval="false"
+                        app:imageUrl="@{viewModel.image}"
+                        app:riv_tile_mode="clamp" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.7"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/itemName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@{viewModel.product_name}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_8sdp"
+                        android:visibility="visible"
+                        tools:text="dfkdhfkjsdhfkjdg" />
+                <!-- android:text="@{viewModel.product_name}"-->
+
+                <TextView
+                        android:id="@+id/itemExtra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:gravity="start"
+                        android:textColor="@color/darker_grey"
+                        android:textSize="@dimen/_5sdp"
+                        tools:text="dsfsdfsdf"
+                        android:text="@{viewModel.getTExtra()}"
+                        android:visibility="visible" />
+
+                <TextView
+                        android:id="@+id/itemDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:gravity="start"
+                        android:textColor="@color/darker_grey"
+                        android:textSize="@dimen/_5sdp"
+                        tools:text="dsfsdfsdf"
+                        android:text="@{viewModel.getTRemark()}"
+                        android:visibility="visible" />
+
+            </LinearLayout>
+
+
+            <TextView
+                    android:id="@+id/price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{viewModel.getTPrice()}"
+                    android:textColor="@color/black"
+                    android:visibility="visible"
+                    tools:text="dfkdhfkjsdhfkjdg" />
+            <!-- android:text="@{viewModel.price}"-->
+            <TextView
+                    android:id="@+id/qty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{viewModel.quantity}"
+                    android:textColor="@color/black"
+                    android:visibility="visible"
+                    tools:text="dfkdhfkjsdhfkjdg" />
+            <!--  android:text="@{viewModel.quatity}"-->
+            <TextView
+                    android:id="@+id/totalPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:visibility="visible"
+                    tools:text="dfkdhfkjsdhfkjdg" />
+            <!-- android:text="@{viewModel.price}"-->
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@color/darker_grey" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/orderLayout"
+                android:layout_marginTop="@dimen/_5sdp" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "805857978892",
+    "firebase_url": "https://farandulaapp-default-rtdb.firebaseio.com",
+    "project_id": "farandulaapp",
+    "storage_bucket": "farandulaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805857978892:android:baf1f194b4ede64ed9dc29",
+        "android_client_info": {
+          "package_name": "com.mtc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805857978892-1boua4bscf26k1b8r3m9fga1rq64tat6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCm1EOBhD7K-nnNwlIDuob_KmMz99Ipnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805857978892-1boua4bscf26k1b8r3m9fga1rq64tat6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805857978892:android:e0eef8c8af95f05cd9dc29",
+        "android_client_info": {
+          "package_name": "com.mtc.farandula"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805857978892-1boua4bscf26k1b8r3m9fga1rq64tat6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCm1EOBhD7K-nnNwlIDuob_KmMz99Ipnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805857978892-1boua4bscf26k1b8r3m9fga1rq64tat6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

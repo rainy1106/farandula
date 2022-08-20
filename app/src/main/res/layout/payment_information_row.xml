@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.mtc.order.OrderItem" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_gray"
+            android:alpha="0.3"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_3sdp">
+
+            <TextView
+                    android:padding="@dimen/_2sdp"
+                    android:id="@+id/itemName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="kfjdsfjsdlkfjdslk"
+                    android:gravity="start|center_vertical"
+                    android:text="@{viewModel.product_name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                    android:padding="@dimen/_2sdp"
+                    android:id="@+id/itemQuantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end|center_vertical"
+                    android:text="@{viewModel.getQuantity()}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp" />
+            <!--  -->
+            <TextView
+                    android:padding="@dimen/_2sdp"
+                    android:id="@+id/itemCost"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end|center_vertical"
+                    android:text="@{viewModel.calculatePrice()}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@color/light_gray" />
+    </LinearLayout>
+
+
+</layout>

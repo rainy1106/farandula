@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+                name="viewModel"
+                type="com.mtc.models.Notifications.ResultNoti" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+            app:cardElevation="@dimen/_4sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:id="@+id/linearLayoutAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp">
+
+
+            <!--<ImageView
+                    android:scaleType="fitXY"
+                    app:fullImageUrl="@{viewModel.image}"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp" />-->
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="0.7"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/itemSeat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.send_by_name}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="normal"
+                        tools:text="dkfhskjfhskjdfhskjfdhk"
+                        tools:ignore="MissingConstraints" />
+
+                <TextView
+                        android:id="@+id/itemName"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.notification}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_6sdp"
+                        android:textStyle="normal"
+                        tools:text="dkfhskjfhskjdfhskjfdhk"
+                        tools:ignore="MissingConstraints" />
+
+                <TextView
+                        tools:text="dkfhskjfhskjdfhskjfdhk"
+                        android:id="@+id/itemDes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:text="@{viewModel.notification_title}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_6sdp"
+                        android:textStyle="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/calender" />
+
+                <TextView
+                        android:id="@+id/itemDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="0.5"
+                        android:text="@{viewModel.getTDate()}"
+                        android:textColor="@color/darker_grey"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="normal" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/clock" />
+
+                <TextView
+                        android:id="@+id/itemTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="0.5"
+                        android:text="@{viewModel.getTime()}"
+                        android:textColor="@color/darker_grey"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="normal" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>

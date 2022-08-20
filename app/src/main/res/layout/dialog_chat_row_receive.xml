@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?><!--<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.mtc.models.Message" />
+    </data>-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_alignParentStart="true"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_width="match_parent"
+            android:id="@+id/linearLayoutLeftId"
+            android:background="@drawable/rectangle_round_with_shadow"
+            android:gravity="start|center_vertical"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:rotation="360"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:src="@drawable/ic_chat_icon"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:id="@+id/messageTextViewFrom"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:text=""
+                    android:layout_margin="@dimen/_5sdp"
+                    android:id="@+id/messageTextViewStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout><!--
+</layout>-->

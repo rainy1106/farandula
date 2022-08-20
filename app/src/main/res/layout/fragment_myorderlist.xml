@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+
+        <variable
+                name="viewModel"
+                type="com.mtc.order.MyOrderListViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="@string/my_order_list"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewMyOrderList"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layoutAnimation="@anim/layout_animation_slide_bottom"
+                    android:layout_weight="1"
+                    android:background="#10000000" />
+
+            <TextView
+                    android:id="@+id/noTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/no_food_items_found"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp"
+                    android:visibility="gone" />
+
+            <Button
+                    android:id="@+id/onClickAddMoreList"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_13sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/button_selector_effect_reverse"
+                    android:gravity="center"
+                    android:padding="@dimen/_6sdp"
+                    android:text="@string/add_more_items"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_selector_effect"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_weight="0.4"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="@string/payment_informations"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+            <!--ScrollView-->
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="always">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:background="#10000000"
+                            android:layoutAnimation="@anim/layout_animation_slide_bottom"
+                            android:id="@+id/recyclerViewPaymentInformation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/two_corner_bottom_round_black"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/_6sdp">
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.4"
+                                android:text="@string/total"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_8sdp"
+                                android:textStyle="bold" />
+
+                        <TextView
+                                android:id="@+id/paymentInfoTotalCost"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_8sdp"
+                                android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <Button
+                            android:id="@+id/confirm_order_button"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="@dimen/_13sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:background="@drawable/button_selector_effect_reverse"
+                            android:gravity="center"
+                            android:padding="@dimen/_6sdp"
+                            android:text="@string/place_order"
+                            android:textAllCaps="false"
+                            android:textColor="@color/text_selector_effect"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+                </LinearLayout>
+            </ScrollView>
+            <!--ScrollView-->
+        </LinearLayout>
+    </LinearLayout>
+</layout>

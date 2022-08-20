@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.mtc.payment.PaymentType" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+
+        <LinearLayout android:id="@+id/freeLayout"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/round_background_black_border"
+                android:gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:orientation="vertical"
+                android:padding="@dimen/_8sdp">
+
+            <ImageView
+                    android:id="@+id/choosePaymentMaster"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@{viewModel.resource}" />
+
+            <TextView
+                    android:id="@+id/choosePaymentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@{viewModel.name}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_6sdp"
+                    android:textStyle="normal" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

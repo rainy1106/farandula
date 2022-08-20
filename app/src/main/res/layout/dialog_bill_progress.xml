@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/dialog_bg"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_main_bill"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="bell.json"
+            app:lottie_loop="true"
+            app:lottie_speed="1" />
+</LinearLayout>

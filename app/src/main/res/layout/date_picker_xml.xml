@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linear_layout"
+        android:background="@android:color/transparent"
+        android:gravity="center">
+
+    <DatePicker
+            android:id="@+id/date_Picker"
+            android:background="@color/darker_grey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:datePickerMode="calendar"
+            android:calendarViewShown="true" />
+</LinearLayout>

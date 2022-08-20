@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="splashViewModel"
+                type="com.mtc.splash.SplashViewModel" />
+    </data>
+
+    <LinearLayout
+            android:background="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <ImageView
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/logo_image" />
+
+        <Button
+                android:visibility="gone"
+                android:onClick="@{(v) -> splashViewModel.onClickNext()}"
+                android:layout_width="@dimen/_80sdp"
+                android:text="@string/next"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_6sdp"
+                android:textColor="@color/text_selector_effect"
+                android:background="@drawable/button_selector_effect"
+                android:layout_height="wrap_content" />
+
+        <Spinner
+                android:visibility="gone"
+                android:id="@+id/mySpinnerTables"
+                android:layout_width="match_parent"
+                android:spinnerMode="dialog"
+                android:layout_height="wrap_content" />
+
+
+        <Spinner
+                android:visibility="gone"
+                android:id="@+id/mySpinnerSeats"
+                android:layout_width="match_parent"
+                android:spinnerMode="dialog"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

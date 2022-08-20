@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:padding="@dimen/_5sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/dialog_bg"
+        android:layout_height="match_parent">
+
+    <!--    <androidx.cardview.widget.CardView
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_2sdp"
+                app:cardMaxElevation="@dimen/_2sdp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">-->
+
+    <TextView
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notification_list"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_centerInParent="true" />
+
+    <ImageView
+            android:id="@+id/chatCross"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/darker_grey"
+            android:layout_width="@dimen/_15sdp"
+            android:background="@drawable/cancel_black"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:layout_below="@+id/chatCross"
+            android:id="@+id/recyclerViewUserNotificationList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/layout_animation_slide_bottom"
+            android:nestedScrollingEnabled="false" />
+
+    <TextView
+            android:id="@+id/noTextView"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_notifications_avaliable"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center" />
+    <!-- </androidx.cardview.widget.CardView>-->
+
+</RelativeLayout>

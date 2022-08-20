@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/dialog_bg"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/two_top_corner_round_black"
+            android:layout_height="@dimen/_30sdp">
+
+        <TextView
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_a_tip"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+
+        <ImageView
+                android:id="@+id/closeIdTip"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:background="@drawable/cancle_white" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <EditText
+                android:id="@+id/editTextTip"
+                android:gravity="center"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp"
+                android:textColorHint="@color/darker_grey"
+                android:hint="@string/add_a_tip"
+                android:maxLength="3"
+                android:background="@android:drawable/editbox_background_normal"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_40sdp" />
+
+        <Button
+                android:id="@+id/doneId"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/_10sdp"
+                android:textAllCaps="true"
+                android:background="@drawable/button_selector_effect_reverse"
+                android:text="@string/done"
+                android:layout_width="@dimen/button_width_medium"
+                android:layout_height="@dimen/_30sdp" />
+    </LinearLayout>
+</LinearLayout>

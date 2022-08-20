@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:background="@color/white">
+
+            <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/leftLayout"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutAnimation="@anim/layout_animation_slide_bottom"
+                        android:id="@+id/recyclerViewSeats" />
+
+                <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <LinearLayout
+                            android:id="@+id/seatA"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:background="@drawable/round_background_black"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_12sdp"
+                            tools:ignore="MissingConstraints">
+
+                        <TextView
+                                android:id="@+id/mySeatATextID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="myseatA"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_8sdp" />
+
+                        <TextView
+                                android:id="@+id/costID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$150"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/seatB"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:background="@drawable/round_background_black_border"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_12sdp"
+                            tools:ignore="MissingConstraints">
+
+                        <TextView
+                                android:id="@+id/mySeatBTextID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="myseatB"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_8sdp" />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$150"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <LinearLayout
+                            android:id="@+id/seatC"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/seatA"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:background="@drawable/round_background_black_border"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_12sdp"
+                            tools:ignore="MissingConstraints">
+
+                        <TextView
+                                android:id="@+id/mySeatCTextID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="myseatC"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_8sdp" />
+
+                        <TextView
+                                android:id="@+id/costIDC"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$150"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/seatD"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/seatB"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:layout_toEndOf="@id/seatC"
+                            android:background="@drawable/round_background_black_border"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_12sdp"
+                            tools:ignore="MissingConstraints">
+
+                        <TextView
+                                android:id="@+id/mySeatDTextID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="myseatD"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_8sdp" />
+
+                        <TextView
+                                android:id="@+id/costIDD"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$150"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                        android:visibility="gone"
+                        android:id="@+id/onClickPlaceOrder"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_selector_effect_reverse"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:paddingTop="@dimen/_6sdp"
+                        android:paddingBottom="@dimen/_6sdp"
+                        android:text="@string/place_order"
+                        android:textColor="@color/text_selector_effect"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="wrap_content">
+
+
+                    <Button
+                            android:id="@+id/onClickPayTip"
+                            android:gravity="center"
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_toStartOf="@+id/onClickPayYourBill"
+                            android:background="@drawable/round_background_yellow"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:paddingEnd="@dimen/_8sdp"
+                            android:paddingTop="@dimen/_6sdp"
+                            android:paddingBottom="@dimen/_6sdp"
+                            android:text="@string/add_a_tip"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_selector_effect"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="normal" />
+
+
+                    <Button
+                            android:layout_gravity="end"
+                            android:id="@+id/onClickPayYourBill"
+                            android:layout_width="@dimen/_90sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/button_selector_effect_reverse"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:paddingEnd="@dimen/_8sdp"
+                            android:paddingTop="@dimen/_6sdp"
+                            android:paddingBottom="@dimen/_6sdp"
+                            android:text="@string/pay_your_bill"
+                            android:textColor="@color/text_selector_effect"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/rightLayout"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:id="@+id/grandTotalLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_toEndOf="@id/seatB"
+                        android:background="@drawable/round_background_black"
+                        android:padding="@dimen/_8sdp">
+
+                    <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/grand_total"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:id="@+id/grandTotal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/tipLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:background="@drawable/round_background_black"
+                        android:padding="@dimen/_8sdp">
+
+                    <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/add_a_tip"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:id="@+id/addTipText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                        android:visibility="gone"
+                        android:id="@+id/have_a_promo_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/grandTotal"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@id/seatB"
+                        android:text="@string/have_a_promo_code"
+                        android:textColor="#50000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/havePromoCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_below="@id/have_a_promo_code"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@id/seatD"
+                        android:background="@drawable/round_background_black_border"
+                        android:backgroundTint="#10000000"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_2sdp">
+
+                    <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/enter_promo_code"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/_8sdp"
+                            tools:ignore="RtlSymmetry" />
+
+                    <Button
+                            android:id="@+id/applyCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_selector_effect"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:paddingEnd="@dimen/_8sdp"
+                            android:paddingTop="@dimen/_6sdp"
+                            android:paddingBottom="@dimen/_6sdp"
+                            android:text="@string/apply_code"
+                            android:textColor="@color/text_selector_effect"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/choose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/choose_payment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewPaymentOptions"
+                        android:layout_width="match_parent"
+                        android:layoutAnimation="@anim/layout_animation_slide_right"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@android:color/transparent"
+                        android:layout_height="wrap_content" />
+
+                <HorizontalScrollView
+                        android:visibility="gone"
+                        android:id="@+id/scrollView"
+                        android:fillViewport="true"
+                        android:measureAllChildren="false"
+                        android:scrollbars="none"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@android:color/transparent"
+                        android:overScrollMode="always">
+
+                    <LinearLayout
+                            android:id="@+id/payment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center_vertical">
+
+                        <LinearLayout
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                android:background="@drawable/rectangle_round_with_shadow_selected"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/_8sdp">
+
+                            <ImageView
+                                    android:id="@+id/choosePaymentMaster"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:src="@drawable/master_card" />
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/credit_card"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_6sdp"
+                                    android:textStyle="normal" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:background="@drawable/rectangle_round_with_shadow"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/_8sdp">
+
+                            <ImageView
+                                    android:id="@+id/choosePaymentCashOnD"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:src="@drawable/cash_on_delivery" />
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/cash"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_6sdp"
+                                    android:textStyle="normal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:background="@drawable/rectangle_round_with_shadow"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/_8sdp">
+
+                            <ImageView
+                                    android:id="@+id/choosePaymentPayPal"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:src="@drawable/paypal" />
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/paypal"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_6sdp"
+                                    android:textStyle="normal" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <TextView
+                        android:visibility="invisible"
+                        android:id="@+id/entercarddetailsid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/scrollView"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@id/seatD"
+                        android:text="@string/entercarddetails"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+                <EditText
+                        android:visibility="invisible"
+                        android:id="@+id/cardholdernameid"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/entercarddetailsid"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@id/seatD"
+                        android:background="@drawable/bottom_line_view"
+                        android:hint="@string/cardholder_name"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/_8sdp"
+                        tools:ignore="RtlSymmetry" />
+
+                <EditText
+                        android:visibility="invisible"
+                        android:id="@+id/cardholdernumberid"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cardholdernameid"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toEndOf="@id/seatD"
+                        android:background="@drawable/bottom_line_view"
+                        android:hint="@string/card_number"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/_8sdp"
+                        tools:ignore="RtlSymmetry" />
+
+                <LinearLayout
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="wrap_content">
+
+                    <EditText
+                            android:id="@+id/expirydate"
+                            android:layout_width="@dimen/_75sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cardholdernumberid"
+                            android:layout_toEndOf="@id/seatD"
+                            android:background="@drawable/bottom_line_view"
+                            android:hint="@string/expiry_date"
+                            android:padding="@dimen/_5sdp"
+
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/_8sdp"
+                            tools:ignore="RtlSymmetry" />
+
+                    <EditText
+                            android:id="@+id/cvv"
+                            android:layout_width="@dimen/_75sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cardholdernumberid"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_toEndOf="@id/expirydate"
+                            android:background="@drawable/bottom_line_view"
+                            android:hint="@string/cvv"
+                            android:maxLength="3"
+                            android:maxLines="1"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/_8sdp"
+                            tools:ignore="RtlSymmetry" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

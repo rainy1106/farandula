@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="splashViewModel"
+                type="com.mtc.splash.SplashViewModel" />
+    </data>
+
+    <LinearLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/linearLayoutRes"
+                android:layout_margin="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_2sdp"
+                android:shadowColor="@color/gray"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/round_background_black_border"
+                app:cardBackgroundColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_margin="@dimen/_10sdp"
+                        android:id="@+id/textViewRes"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_restaurant"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                <View
+                        android:visibility="gone"
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray" />
+
+                <ImageView
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:rotation="90"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/arrow_black" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:layout_margin="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_2sdp"
+                android:shadowColor="@color/gray"
+                android:id="@+id/linearLayoutTab"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/round_background_black_border"
+                app:cardBackgroundColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_margin="@dimen/_10sdp"
+                        android:id="@+id/textViewTab"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_tables"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                <View
+                        android:visibility="gone"
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray" />
+
+                <ImageView
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:rotation="90"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/arrow_black" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:layout_margin="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_2sdp"
+                android:shadowColor="@color/gray"
+                android:id="@+id/linearLayoutSeat"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/round_background_black_border"
+                app:cardBackgroundColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_margin="@dimen/_10sdp"
+                        android:id="@+id/textViewSeat"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_seats"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                <View
+                        android:visibility="gone"
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray" />
+
+                <ImageView
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:rotation="90"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/arrow_black" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+                android:id="@+id/nextButton"
+                android:layout_width="@dimen/_80sdp"
+                android:text="@string/next"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_6sdp"
+                android:textColor="@color/text_selector_effect"
+                android:background="@drawable/button_selector_effect_reverse"
+                android:layout_height="wrap_content" />
+
+        <Spinner
+                android:id="@+id/mySpinnerTables"
+                android:layout_width="match_parent"
+                android:spinnerMode="dialog"
+                android:layout_height="wrap_content" />
+
+
+        <Spinner
+                android:id="@+id/mySpinnerSeats"
+                android:layout_width="match_parent"
+                android:spinnerMode="dialog"
+                android:layout_height="wrap_content" />
+
+
+        <!-- <VideoView
+             android:id="@+id/splashVideo"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" />-->
+        <!-- <ImageView
+             android:id="@+id/imageView"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@mipmap/ic_launcher" />
+
+         <TextView
+             android:id="@+id/textView"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/app_name"
+             android:textColor="@color/white"
+             android:textSize="@dimen/_40sdp" />
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/pizza_and_restaurant"
+             android:textColor="@color/white"
+             android:textSize="@dimen/_20sdp" />-->
+
+    </LinearLayout>
+</layout>
