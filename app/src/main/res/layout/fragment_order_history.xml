@@ -162,7 +162,6 @@
                 android:layout_below="@+id/orderHistoryTopLinearLayout"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_2sdp"
                 android:layoutAnimation="@anim/layout_animation_slide_bottom"
                 android:layout_centerInParent="true" />
 

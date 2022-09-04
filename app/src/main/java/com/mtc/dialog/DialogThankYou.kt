@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener
 import com.mtc.R
 import com.mtc.general.BaseViewModel
 import com.mtc.general.SharedPreference
+import com.mtc.kitchen.OrdersViewModel
 import com.mtc.order.OrderListViewModel
 import com.mtc.payment.FragmentPayment
 import com.mtc.payment.Seats
@@ -45,6 +46,7 @@ class DialogThankYou : Dialog {
         clearApp(/*context*/)
         closeId.setOnClickListener {
             dismiss()
+            OrdersViewModel.showDialog.postValue(false)
             showFeedbackDialog()
         }
     }

@@ -1,5 +1,5 @@
 <resources>
-    <!--<string name="app_name">farandula</string>-->
+   <!-- <string name="app_name">farandula</string>-->
     <string name="app_name">Kitchen Staff</string>
     <string name="pizza_and_restaurant">Pizza &amp; Restaurant</string>
     <string name="specials">Specials</string>

@@ -119,20 +119,22 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), View.On
 
 
         OrdersViewModel.showDialog.observe {
-            try {
-                FirebaseDatabase.getInstance().reference.child(APIConstant.CHATS_ROOM_NEW)
-                    .child(SharedPreference.getTableId(this@HomeActivity)!!)
-                    .ref.removeValue { error, ref -> Log.v("Ref", ref.toString()) }
-            } catch (ex: Exception) {
-                ex.printStackTrace()
+            if (it){
+                try {
+                    FirebaseDatabase.getInstance().reference.child(APIConstant.CHATS_ROOM_NEW)
+                        .child(SharedPreference.getTableId(this@HomeActivity)!!)
+                        .ref.removeValue { error, ref -> Log.v("Ref", ref.toString()) }
+                } catch (ex: Exception) {
+                    ex.printStackTrace()
+                }
+                val dialog = DialogThankYou(this@HomeActivity)
+                dialog.show()
             }
-            val dialog = DialogThankYou(this@HomeActivity)
-            dialog.show()
         }
 
 
         OrdersViewModel.userUpdates.observe {
-            if (OrderListViewModel.orderListSelected.size != 0)
+            if (OrderListViewModel.orderListSelected.size != 0 && it.toString().isNotBlank())
                 showAlert(it)
         }
 

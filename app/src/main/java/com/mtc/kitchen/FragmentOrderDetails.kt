@@ -590,17 +590,17 @@ open class FragmentOrderDetails() :
         document.add(p)
     }
 
-    private fun printPdf() {
-        val printManager = requireActivity().getSystemService(Context.PRINT_SERVICE) as PrintManager
-        try {
-            val pdfDocumnetAdapter = PdfDocumentAdapter(
-                requireActivity(), Common.getPath(requireContext()) + "test_pdf.pdf"
-            )
-            printManager.print("Document", pdfDocumnetAdapter, PrintAttributes.Builder().build())
-        } catch (ex: java.lang.Exception) {
-
-        }
-    }
+//    private fun printPdf() {
+//        val printManager = requireActivity().getSystemService(Context.PRINT_SERVICE) as PrintManager
+//        try {
+//            val pdfDocumnetAdapter = PdfDocumentAdapter(
+//                requireActivity(), Common.getPath(requireContext()) + "test_pdf.pdf"
+//            )
+//            printManager.print("Document", pdfDocumnetAdapter, PrintAttributes.Builder().build())
+//        } catch (ex: java.lang.Exception) {
+//
+//        }
+//    }
 
     override fun getBindingVariable(): Int = BR.viewModel
 
@@ -692,44 +692,44 @@ open class FragmentOrderDetails() :
 
 
     /*------------------------------*/
-    open fun printUsb() {
-        val usbConnection: UsbConnection? =
-            UsbPrintersConnections.selectFirstConnected(requireContext())
-        val usbManager = requireActivity().getSystemService(Context.USB_SERVICE) as UsbManager?
-        if (usbConnection == null || usbManager == null) {
-            AlertDialog.Builder(requireContext())
-                .setTitle("USB Connection")
-                .setMessage("No USB printer found.")
-                .show()
-            return
-        }
-        val permissionIntent = PendingIntent.getBroadcast(
-            requireContext(),
-            0,
-            Intent(ACTION_USB_PERMISSION),
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_MUTABLE else 0
-        )
-        val filter = IntentFilter(ACTION_USB_PERMISSION)
-        requireActivity().registerReceiver(usbReceiver, filter)
-        usbManager.requestPermission(usbConnection.device, permissionIntent)
-//*************************************************************//
-//        val usbConnection = UsbPrintersConnections.selectFirstConnected(requireActivity())
+//    open fun printUsb() {
+//        val usbConnection: UsbConnection? =
+//            UsbPrintersConnections.selectFirstConnected(requireContext())
 //        val usbManager = requireActivity().getSystemService(Context.USB_SERVICE) as UsbManager?
-//
 //        if (usbConnection == null || usbManager == null) {
-//            AlertDialog.Builder(requireActivity())
+//            AlertDialog.Builder(requireContext())
 //                .setTitle("USB Connection")
 //                .setMessage("No USB printer found.")
 //                .show()
 //            return
 //        }
-//
-//        val permissionIntent =
-//            PendingIntent.getBroadcast(requireContext(), 0, Intent(ACTION_USB_PERMISSION), 0)
+//        val permissionIntent = PendingIntent.getBroadcast(
+//            requireContext(),
+//            0,
+//            Intent(ACTION_USB_PERMISSION),
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_MUTABLE else 0
+//        )
 //        val filter = IntentFilter(ACTION_USB_PERMISSION)
 //        requireActivity().registerReceiver(usbReceiver, filter)
 //        usbManager.requestPermission(usbConnection.device, permissionIntent)
-    }
+////*************************************************************//
+////        val usbConnection = UsbPrintersConnections.selectFirstConnected(requireActivity())
+////        val usbManager = requireActivity().getSystemService(Context.USB_SERVICE) as UsbManager?
+////
+////        if (usbConnection == null || usbManager == null) {
+////            AlertDialog.Builder(requireActivity())
+////                .setTitle("USB Connection")
+////                .setMessage("No USB printer found.")
+////                .show()
+////            return
+////        }
+////
+////        val permissionIntent =
+////            PendingIntent.getBroadcast(requireContext(), 0, Intent(ACTION_USB_PERMISSION), 0)
+////        val filter = IntentFilter(ACTION_USB_PERMISSION)
+////        requireActivity().registerReceiver(usbReceiver, filter)
+////        usbManager.requestPermission(usbConnection.device, permissionIntent)
+//    }
 
 //    private val usbReceiver: BroadcastReceiver = object : BroadcastReceiver() {
 //        override fun onReceive(context: Context, intent: Intent) {

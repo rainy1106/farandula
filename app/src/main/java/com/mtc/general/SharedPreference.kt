@@ -160,12 +160,12 @@ object SharedPreference {
     }
 
     /*tale*/
-//    fun clear(context: Context) {
-//        val editor = getPref(context)
-//        editor?.clear()
-//        editor?.apply()
-//        editor?.commit()
-//    }
+    fun clear(context: Context) {
+        val editor = getPref(context)
+        editor?.clear()
+        editor?.apply()
+        editor?.commit()
+    }
 
     fun setRestaurantKitchen(context: Context, data: VerifyCode.Result) {
         val editor = getPref(context)
@@ -182,14 +182,14 @@ object SharedPreference {
         return sharedPreferences.getString(APIConstant.KITCHEN_RESTAURANT, "")
     }
 
-    fun setOrderId(context: Context, orderId: String) {
-        val editor = getPref(context)
-        if (editor != null) {
-            editor.putString(APIConstant.ORDER_ID, orderId)
-            editor.apply()
-            editor.commit()
-        }
-    }
+//    fun setOrderId(context: Context, orderId: String) {
+//        val editor = getPref(context)
+//        if (editor != null) {
+//            editor.putString(APIConstant.ORDER_ID, orderId)
+//            editor.apply()
+//            editor.commit()
+//        }
+//    }
 
 //    fun getOrderId(context: Context): String? {
 //        val sharedPreferences: SharedPreferences =

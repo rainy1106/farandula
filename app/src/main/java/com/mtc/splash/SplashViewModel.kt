@@ -1,11 +1,14 @@
 package com.mtc.splash
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.mtc.api.APIConstant
+import com.mtc.api.CommonApi
 import com.mtc.dialog.SelectionClass
 import com.mtc.general.BaseViewModel
 import com.mtc.general.SharedPreference
@@ -248,13 +251,15 @@ class SplashViewModel(
         return arrayList
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun callLoginAPI(context: Context, fcmToken: String, onEventHandler: EventHandler) {
-//        val commonApi = CommonApi()
+        val commonApi = CommonApi()
 //        commonApi.loginUser(context, fcmToken, mEventHandler)
 //        val urlLine = "https://codezens.com/farandula/index.php/api/seat_login?seat_id=" +
 //                "${SharedPreference.getSeatId(context)}&device_type=Android&register_id=$fcmToken"
         val urlLine = APIConstant.ApiBaseUrl + "seat_login?seat_id=" +
-                "${SharedPreference.getSeatId(context)}&device_type=Android&register_id=$fcmToken"
+                "${SharedPreference.getSeatId(context)}&device_type=Android&register_id=$fcmToken" +
+                "&device_id=${commonApi.getDeviceId(context)}"
         CoroutineScope(Dispatchers.IO).launch {
             val rss = NetworkUtility.APIrequest(urlLine)
             withContext(Dispatchers.Main) {

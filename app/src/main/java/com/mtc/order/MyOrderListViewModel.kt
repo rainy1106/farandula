@@ -94,7 +94,7 @@ class MyOrderListViewModel : BaseViewModel() {
             val result = jsonObject.getJSONObject("data")
             mEventHandler.onSuccess(result)
         } else {
-            mEventHandler.onSuccess("Failed")
+            mEventHandler.onFailure(jsonObject.getString("message"))
         }
     }
 
@@ -145,7 +145,7 @@ class MyOrderListViewModel : BaseViewModel() {
             //{"promocode":"","instractions":"","status":"PENDING","entrydt":"2022-06-14 13:18:23","txn_id":"abc","sub_total":"7","payment_mode":"card","seat_id":"1","txn_amount":"7","datetime":"2022-06-14 18:48:23","date":"2022-06-14","order_id":"5","discount":"0"}
             mEventHandler.onSuccess(result)
         } else {
-            mEventHandler.onSuccess("Failed")
+            mEventHandler.onFailure(jsonObject.getString("message"))
         }
     }
 

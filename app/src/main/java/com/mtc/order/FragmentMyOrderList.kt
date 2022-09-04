@@ -92,6 +92,12 @@ class FragmentMyOrderList : BaseFragment<FragmentMyorderlistBinding, MyOrderList
                 mViewModel.updateOrderList()
                 replaceFragment(FragmentConfirmOrder.newInstance())
             }
+
+            override fun onFailure(toString: String) {
+                super.onFailure(toString)
+                confirm_order_button.isClickable = true
+                Toast.makeText(requireContext(),toString,Toast.LENGTH_SHORT).show()
+            }
         })
     }
 

@@ -9,10 +9,10 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Gravity
-import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -64,7 +64,8 @@ class DialogFeedback : Dialog {
         val displayWidth = displayMetrics.widthPixels
         val displayHeight = displayMetrics.heightPixels
         val dialogWindowWidth = (displayWidth * 0.8f).toInt()
-        val dialogWindowHeight =  WindowManager.LayoutParams.WRAP_CONTENT //(displayHeight * 1.0f).toInt()
+        val dialogWindowHeight =
+            WindowManager.LayoutParams.WRAP_CONTENT //(displayHeight * 1.0f).toInt()
 
         lp.width = dialogWindowWidth
         lp.height = dialogWindowHeight
@@ -74,12 +75,20 @@ class DialogFeedback : Dialog {
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         feedbackSubmit.setOnClickListener {
-            dismiss()
-            finish()
+            if (editText.text.isNotEmpty()) {
+                dismiss()
+                finish()
+            } else {
+                Toast.makeText(context,"Please write some reviews to submit. Thanks!",Toast.LENGTH_SHORT).show()
+            }
+
         }
         dismissId.setOnClickListener {
             dismiss()
-            finish()
+            OrderListViewModel.orderListSelected.clear()
+            SharedPreference.setCatId(context, "1")
+            FragmentPayment.order_id = ""
+//            finish()
         }
     }
 

@@ -109,7 +109,7 @@ class BaseRepository {
         val restaurantId = SharedPreference.getRestaurantKitchen(context)
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val currentDate = sdf.format(Date())
-        val urlPath = "get_order?restaurant_id=${restaurantId}&date=${currentDate}"
+        val urlPath = "get_order?restaurant_id=${restaurantId}"//&date=${currentDate}
         val urlLine: String = APIConstant().getApiBaseUrl(urlPath)
         CoroutineScope(Dispatchers.IO).launch {
             val rss = NetworkUtility.APIrequest(urlLine)

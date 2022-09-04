@@ -2,10 +2,12 @@ package com.mtc.splash
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.mtc.R
@@ -72,6 +74,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, SplashViewModel>(
 //            connectionMode = it
 //            restart(it)
 //        }
+        SharedPreference.setIsKitchen(this@RegisterActivity, false)
         callMyRestaurant()
 
     }
@@ -91,6 +94,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, SplashViewModel>(
         TODO("Not yet implemented")
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onClick(view: View?) {
 
         when (view?.id) {
@@ -158,12 +162,13 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, SplashViewModel>(
 
 
                                 progressDialog.setMessage(getString(R.string.registering_please_wait))
-                                progressDialog.setCancelable(false)
+                                progressDialog.setCancelable(true)
                                 progressDialog.show()
 
 
                                 if (fcmToken?.isNotEmpty() == true) {
-                                    mViewModel.callLoginAPI(this@RegisterActivity, fcmToken!!,
+                                    mViewModel.
+                                    callLoginAPI(this@RegisterActivity, fcmToken!!,
                                         object : EventHandler {
                                             override fun onComplete() {
                                                 super.onComplete()

@@ -20,6 +20,7 @@ import com.mtc.dialog.DialogChatUser
 import com.mtc.general.BaseFragment
 import com.mtc.general.SharedPreference
 import com.mtc.general.initViewModel
+import com.mtc.kitchen.OrdersViewModel
 import com.mtc.payment.FragmentPayment
 import com.mtc.utils.SimpleDividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_confirm_order.*
@@ -53,6 +54,10 @@ class FragmentConfirmOrder :
         onClickAddMoreList.setOnClickListener(this)
         onClickPlaceOrder.setOnClickListener(this)
         sendInstructionButton.setOnClickListener(this)
+        mDataBinding.onClickPlaceOrder.isEnabled = false
+        mDataBinding.onClickAddMoreList.isEnabled = true
+        userOrderImages.setImageResource(R.drawable.chefimages)
+        OrdersViewModel.userUpdates.postValue("")
         //bellOnClick.setOnClickListener(this)
 
         showKitchenMessageToUser()
@@ -85,7 +90,14 @@ class FragmentConfirmOrder :
         mViewModel.totalCost.observe {
             totalCost.text = it
         }
-
+        OrdersViewModel.userUpdates.observe {
+            mDataBinding.onClickPlaceOrder.isEnabled = it.equals("ORDER IS READY")
+            mDataBinding.onClickAddMoreList.isEnabled = !mDataBinding.onClickPlaceOrder.isEnabled
+            if (mDataBinding.onClickPlaceOrder.isEnabled)
+                userOrderImages.setImageResource(R.drawable.ready)
+            else
+                userOrderImages.setImageResource(R.drawable.chefimages)
+        }
     }
 
 

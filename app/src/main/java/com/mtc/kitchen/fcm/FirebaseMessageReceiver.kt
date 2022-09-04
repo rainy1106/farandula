@@ -21,15 +21,21 @@ import com.google.firebase.messaging.RemoteMessage
 import com.mtc.R
 import com.mtc.general.SharedPreference
 import com.mtc.home.HomeActivity
+import com.mtc.kitchen.ActivityEnterCode
 import com.mtc.kitchen.FragmentMessages
 import com.mtc.kitchen.HomeActivityKitchen
 import com.mtc.kitchen.OrdersViewModel
+import com.mtc.payment.FragmentPayment
+import com.mtc.splash.RegisterActivity
 import com.mtc.utils.OrderType
 import org.json.JSONObject
+import java.io.File
 
 
 class FirebaseMessageReceiver : FirebaseMessagingService() {
 
+
+    private var key: String = ""
 
     // Override onMessageReceived() method to extract the
     // title and
@@ -38,13 +44,13 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
         // Second case when notification payload is
         // received.
         if (remoteMessage.toIntent().extras != null) {
-            val key = JSONObject(
+            key = JSONObject(
                 remoteMessage.toIntent().extras?.get("message").toString()
             ).getString("key")
             val message = JSONObject(
                 remoteMessage.toIntent().extras?.get("message").toString()
             ).getString("message")
-            showNotificationNew("Farandula", message)
+
             Log.v("message", message)
             Log.v("key", key)
             Log.v("FIREMESSAGE", remoteMessage.toIntent().extras?.get("message").toString())
@@ -66,6 +72,7 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
             if (key == "CLEAR") {
 
                 SharedPreference.setCatId(applicationContext, "1")
+                FragmentPayment.order_id = ""
                 val intent = Intent(applicationContext, HomeActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -104,8 +111,56 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
             if (key == "ORDER UPDATED") {
                 OrdersViewModel.newOrder.postValue(OrderType.UPCOMINGORDER.type/*true*/)
             }
-
+            if (key == "LOGOUT" && SharedPreference.isKitchen(this) == true) {
+//                SharedPreference.clear(applicationContext)
+//                clearApplicationData()
+                val intent = Intent(applicationContext, ActivityEnterCode::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+            if (key == "LOGOUT" && SharedPreference.isKitchen(this) != true) {
+//                SharedPreference.clear(applicationContext)
+//                clearApplicationData()
+                val intent = Intent(applicationContext, RegisterActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+            showNotificationNew("Farandula", message)
         }
+    }
+
+    private fun clearApplicationData() {
+        val cache: File = cacheDir
+        val appDir = File(cache.parent)
+        if (appDir.exists()) {
+            val children: Array<String> = appDir.list()
+            for (s in children) {
+                if (s != "lib") {
+                    deleteDir(File(appDir, s))
+                    Log.i(
+                        "EEEEEERRRRRRROOOOOOORRRR",
+                        "**************** File /data/data/APP_PACKAGE/$s DELETED *******************"
+                    )
+                }
+            }
+        }
+    }
+
+    private fun deleteDir(dir: File?): Boolean {
+        if (dir != null && dir.isDirectory) {
+            val children = dir.list()
+            for (i in children.indices) {
+                val success = deleteDir(File(dir, children[i]))
+                if (!success) {
+                    return false
+                }
+            }
+        }
+        return dir!!.delete()
     }
 
     // Method to get the custom Design for the display of
@@ -179,7 +234,7 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
 
     fun showNotificationNew(title: String?, message: String?) {
 
-        var mMediaPlayer = MediaPlayer.create(this, R.raw.notification)
+        val mMediaPlayer = MediaPlayer.create(this, R.raw.notification)
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
         mMediaPlayer.isLooping = false
         mMediaPlayer.start()
@@ -225,10 +280,11 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
         } else {
             Intent(this, HomeActivity::class.java)
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         // Pass the intent to PendingIntent to start the
         // next Activity
-        val pendingIntent = PendingIntent.getActivity(
+        var pendingIntent = PendingIntent.getActivity(
             this, 0, intent,
             PendingIntent.FLAG_MUTABLE
         )
@@ -238,7 +294,9 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
             ContentResolver.SCHEME_ANDROID_RESOURCE
                     + "://" + packageName + "/raw/notification.mp3"
         )
-
+        if (key == "LOGOUT") {
+            pendingIntent = null
+        }
         with(NotificationCompat.Builder(applicationContext, channel_id)) {
             setContentTitle(title)
             setContentText(message)

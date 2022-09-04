@@ -59,6 +59,15 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8sdp"
                         android:textStyle="bold" />
+                <TextView
+                        android:id="@+id/itemStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="@{viewModel.getLStatus}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_6sdp"
+                        android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout

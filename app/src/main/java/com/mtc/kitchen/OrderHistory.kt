@@ -48,7 +48,7 @@ class OrderHistory {
         var seat_name: String,
         var reviewed: String,
         var time_ago: String,
-        var paid_amount:String,
+        var paid_amount: String,
         var cart: java.util.ArrayList<Cart>
     ) {
 
@@ -76,6 +76,10 @@ class OrderHistory {
             val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             val outputFormat: DateFormat = SimpleDateFormat("KK:mm a")
             return inputFormat.parse(datetime)?.let { outputFormat.format(it) }
+        }
+
+        fun getLStatus(): String {
+            return "Status : $status"
         }
     }
 

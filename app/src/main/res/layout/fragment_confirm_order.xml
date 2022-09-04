@@ -156,6 +156,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_weight="1"
+                            android:enabled="false"
                             android:background="@drawable/button_selector_effect_reverse"
                             android:textColor="@color/text_selector_effect"
                             android:gravity="center"
@@ -218,6 +219,7 @@
                 android:layout_height="match_parent">
 
             <ImageView
+                    android:id="@+id/userOrderImages"
                     android:background="@drawable/chefimages"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />

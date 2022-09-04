@@ -1,8 +1,12 @@
 package com.mtc.api
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -32,6 +36,31 @@ class CommonApi {
 
     init {
         instance = this
+    }
+
+
+    @SuppressLint("HardwareIds")
+    fun getDeviceId(context: Context): String {
+
+      return  android.provider.Settings.Secure.getString(
+            context.contentResolver,
+            android.provider.Settings.Secure.ANDROID_ID
+        );
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//            return Settings.Secure.getString(
+//                ApplicationProvider.getApplicationContext<Context>().getContentResolver(),
+//                Settings.Secure.ANDROID_ID
+//            )
+//        } else {
+//            val telephonyManager =
+//                context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
+//            if (telephonyManager!!.imei != null) {
+//                return telephonyManager.imei
+//            } else if (telephonyManager.meid != null) {
+//                return telephonyManager.meid
+//            }
+//        }
+        return ""
     }
 
 //    fun getProductList(
@@ -567,9 +596,10 @@ class CommonApi {
 //    }
 
     /**/
+    @RequiresApi(Build.VERSION_CODES.O)
     fun verifyCode(context: Context, code: String, fcmToken: String, mEventHandler: EventHandler) {
         val urlLine: String = APIConstant().getApiBaseUrl(APIConstant.VERIFY_CODE) + code +
-                "&register_id=" + fcmToken + "&device_type=Android"
+                "&register_id=" + fcmToken + "&device_type=Android&device_id=${getDeviceId(context)}"
         CoroutineScope(Dispatchers.IO).launch {
             val rss = NetworkUtility.APIrequest(urlLine)
             if (rss.toString().isEmpty().not())

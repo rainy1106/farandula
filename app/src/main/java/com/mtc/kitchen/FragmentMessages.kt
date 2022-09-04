@@ -120,7 +120,7 @@ class FragmentMessages : BaseFragment<FragmentMessagesBinding, MessageViewModel>
             if (messageFrom.isBlank())
                 messageFrom = chattitle.toString()
 
-            if (chattitle.toString().isEmpty()) {
+            if (chattitle.toString().isBlank()&&chatTitleTextView.text.toString().isBlank()) {
                 Toast.makeText(context, "Table name required!", Toast.LENGTH_SHORT).show()
                 return
             }
