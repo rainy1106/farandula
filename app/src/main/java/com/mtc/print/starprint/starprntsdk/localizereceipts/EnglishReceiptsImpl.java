@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 
 import com.mtc.R;
+import com.mtc.api.APIConstant;
+import com.mtc.general.SharedPreference;
 import com.mtc.kitchen.FragmentOrderDetails;
 import com.mtc.kitchen.OrderListItem;
 import com.mtc.print.starprint.starprntsdk.PrinterSettingConstant;
@@ -56,8 +58,6 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
 //        builder.appendBitmapWithAlignment(icon, true, AlignmentPosition.Center);
 
 
-
-
         Double total = 0.0;
         for (int i = 0; i < order.getCart().size(); i++) {
             OrderListItem.Cart it = order.getCart().get(i);
@@ -71,7 +71,7 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
         DecimalFormat numberFormat = new DecimalFormat("##.##");
         String roundoff = numberFormat.format(total);
         double tax = ((total * 7) / 100.0);
-        double full_total = Double.valueOf(roundoff )+ tax;
+        double full_total = Double.valueOf(roundoff) + tax;
         String _full_total = numberFormat.format(full_total);
         builder.appendAlignment(AlignmentPosition.Center);
         builder.appendMultiple(("$" + _full_total + "\n").getBytes(encoding), 2, 2);
@@ -80,11 +80,11 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
         for (int i = 0; i < order.getCart().size(); i++) {
             OrderListItem.Cart it = order.getCart().get(i);
             builder.appendAlignment(AlignmentPosition.Right);
-            builder.appendEmphasis((it.getProduct_name() + " X " + it.getQuantity() + "        \t" + " \t$ " + String.valueOf(it.getPrice()) + "        \t"+ "\n").getBytes(encoding));
+            builder.appendEmphasis((it.getProduct_name() + " X " + it.getQuantity() + "        \t" + " \t$ " + String.valueOf(it.getPrice()) + "        \t" + "\n").getBytes(encoding));
             if (!it.getExtra_items().trim().isEmpty())
-            builder.append(("Extra Item : "+it.getExtra_items() + "        \t"+ "\n").getBytes(encoding));
+                builder.append(("Extra Item : " + it.getExtra_items() + "        \t" + "\n").getBytes(encoding));
             if (!it.getRemark().trim().isEmpty())
-            builder.append(("Notes : "+it.getRemark() + "        \t"+ "\n").getBytes(encoding));
+                builder.append(("Notes : " + it.getRemark() + "        \t" + "\n").getBytes(encoding));
             builder.appendAlignment(AlignmentPosition.Left);
             builder.append(("-----------------------------------------------\n").getBytes(encoding));
         }
@@ -94,13 +94,13 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
         builder.append(("-----------------------------------------------\n").getBytes(encoding));
 
         builder.appendAlignment(AlignmentPosition.Right);
-        builder.append(("Purchase SubTotal  :         \t"+ " \t$ " + String.valueOf(roundoff)+ "        \t").getBytes(encoding));
+        builder.append(("Purchase SubTotal  :         \t" + " \t$ " + String.valueOf(roundoff) + "        \t").getBytes(encoding));
 //        builder.appendAlignment(AlignmentPosition.Right);
 //        builder.append((String.valueOf(roundoff)).getBytes(encoding));
         builder.append(("\n\n").getBytes(encoding));
 
         builder.appendAlignment(AlignmentPosition.Right);
-        builder.append(("Sales Tax  :         \t"+ " \t$ " + numberFormat.format(tax)+ "        \t").getBytes(encoding));
+        builder.append(("Sales Tax  :         \t" + " \t$ " + numberFormat.format(tax) + "        \t").getBytes(encoding));
 //        builder.appendAlignment(AlignmentPosition.Right);
 //        builder.append(String.valueOf(tax).getBytes(encoding));
         builder.append(("\n\n").getBytes(encoding));
@@ -109,7 +109,7 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
         builder.append(("-----------------------------------------------\n").getBytes(encoding));
 
         builder.appendAlignment(AlignmentPosition.Right);
-        builder.append(("Total :         \t"+ " \t$ "   + String.valueOf(_full_total)+ "        \t"+"\n").getBytes(encoding));
+        builder.append(("Total :         \t" + " \t$ " + String.valueOf(_full_total) + "        \t" + "\n").getBytes(encoding));
         builder.append("-----------------------------------------------\n".getBytes(encoding));
 
 
@@ -120,8 +120,11 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
 
         builder.appendAlignment(AlignmentPosition.Center);
         builder.appendEmphasis(("Farandula Pizza & Restaurant\n").getBytes(encoding));
-        builder.append(("2846 Palm Ave\n").getBytes(encoding));
-        builder.append(("Hialeah, FL33010\n").getBytes(encoding));
+        if (APIConstant.restaurant_address_cons.trim().isEmpty())
+            builder.append(("2846 Palm Ave, Hialeah, FL33010\\\\t\\\\t").getBytes(encoding));
+        else builder.append((APIConstant.restaurant_address_cons).getBytes(encoding));
+//        builder.append(("2846 Palm Ave\n").getBytes(encoding));
+//        builder.append(("Hialeah, FL33010\n").getBytes(encoding));
         builder.append(("786-332-3779\n").getBytes(encoding));
         builder.append("-----------------------------------\n".getBytes(encoding));
 

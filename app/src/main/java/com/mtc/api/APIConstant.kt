@@ -6,6 +6,7 @@ open class APIConstant {
 
     companion object {
 
+        lateinit var restaurant_address_cons: String
         const val ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION"
         val ISKITCHEN: String = "isKitchen"
         val FCMUSER: String = "fcmUser"
@@ -21,6 +22,7 @@ open class APIConstant {
         val TABLE_NAME: String = "table_name"
         val SEAT_NAME: String = "seat_name"
         val RESTAURANT_ID: String = "restaurant_id"
+        val RESTAURANT_ADDRESS: String = "restaurant_address"
         val CAT_ID: String = "category_id"
         val ORDER_ID: String = "order_id"
         val SHARED_FILE = "Farandula_Pref"

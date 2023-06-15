@@ -669,6 +669,8 @@ class CommonApi {
             mEventHandler.onComplete()
             if (verifyCodeResponse.status) {
                 SharedPreference.setRestaurantKitchen(context, verifyCodeResponse.data.result)
+                SharedPreference.setKitchenAddress(context,verifyCodeResponse.data.result.restaurant_address)
+                APIConstant.restaurant_address_cons = verifyCodeResponse.data.result.restaurant_address
                 mEventHandler.onSuccess()
             } else mEventHandler.onFailure()
             Log.v("Response is: ", response.toString())

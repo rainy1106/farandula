@@ -14,7 +14,7 @@ class VerifyCode {
     )
 
     data class Data(
-        var result : Result
+        var result: Result
     )
 
     data class Result(
@@ -22,6 +22,7 @@ class VerifyCode {
         var restaurant_code: String,
         var restaurant_name: String,
         var restaurant_image: String,
+        var restaurant_address: String,
         var status: String,
         var entrydt: String
     )

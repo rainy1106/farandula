@@ -38,6 +38,7 @@ import com.mtc.demoppdf.PdfDocumentAdapter
 import com.mtc.general.BaseFragment
 import com.mtc.general.initViewModel
 import com.mtc.interfaces.EventHandler
+import com.mtc.print.starprint.starprntsdk.Communication.CommunicationResult
 import com.mtc.print.starprint.starprntsdk.MainActivity
 import com.mtc.print.usb.DeviceConnection
 import com.mtc.print.usb.UsbConnection
@@ -164,14 +165,17 @@ open class FragmentOrderDetails() :
             mDataBinding.closeOrder.visibility = View.VISIBLE
         }
 
-        val roundoff = roundOffDecimal(mViewModel.getTotalCost(getList()))//(mViewModel.getTotalCost(getList()) * 100.0).roundToInt() / 100.0
+        val roundoff =
+            roundOffDecimal(mViewModel.getTotalCost(getList()))//(mViewModel.getTotalCost(getList()) * 100.0).roundToInt() / 100.0
         "$ $roundoff".also { totalCostDetails.text = it }
     }
+
     fun roundOffDecimal(number: Double): Double {
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
         return df.format(number).toDouble()
     }
+
     override fun onClick(view: View?) {
 
         when (view?.id) {
@@ -210,6 +214,7 @@ open class FragmentOrderDetails() :
                                 super.onComplete()
                                 progressDialog.dismiss()
                             }
+
                             override fun onSuccess() {
                                 super.onSuccess()
                                 replaceFragment(FragmentOrderListKitchen.newInstance())
@@ -260,7 +265,8 @@ open class FragmentOrderDetails() :
                             override fun onFailure(toString: String) {
                                 super.onFailure(toString)
                                 orderReady.text = getString(R.string.order_is_ready)
-                                Toast.makeText(requireContext(),toString,Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), toString, Toast.LENGTH_SHORT)
+                                    .show()
                             }
 
                             override fun onComplete() {
@@ -276,6 +282,7 @@ open class FragmentOrderDetails() :
 
                 var intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
+                CommunicationResult.count = 0;
 
                 // printUsb()
 //                if (PDFClass(requireContext()).checkPermissions()) {

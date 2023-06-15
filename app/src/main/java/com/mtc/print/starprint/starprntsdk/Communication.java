@@ -1,6 +1,7 @@
 package com.mtc.print.starprint.starprntsdk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -24,6 +25,9 @@ import java.util.Map;
 public class Communication {
 
     public static class CommunicationResult {
+
+        public static Context appContext;
+        public static int count = 0;
         private Result mResult = Result.ErrorUnknown;
         private int mCode = StarResultCode.FAILURE;
 
@@ -181,6 +185,11 @@ public class Communication {
         switch (communicationResult.getResult()) {
             case Success:
                 builder.append("Success!");
+                if (CommunicationResult.count < 1) {
+                    CommunicationResult.count = CommunicationResult.count + 1;
+                    Intent intent = new Intent(CommunicationResult.appContext, MainActivity.class);
+                    CommunicationResult.appContext.startActivity(intent);
+                }
                 break;
             case ErrorOpenPort:
                 builder.append("Fail to openPort");

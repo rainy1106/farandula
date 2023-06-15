@@ -138,7 +138,7 @@
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:maxLength="8"
-                    android:text="@{viewModel.paid_amount}"
+                    android:text="@{viewModel.getSubTotal}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_8sdp"
                     android:textStyle="bold" />

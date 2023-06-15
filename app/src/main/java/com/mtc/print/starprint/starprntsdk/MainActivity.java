@@ -12,6 +12,7 @@ public class MainActivity extends CommonActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        Communication.CommunicationResult.appContext = this;
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

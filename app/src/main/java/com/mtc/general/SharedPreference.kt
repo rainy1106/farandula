@@ -212,6 +212,20 @@ object SharedPreference {
         return sharedPreferences.getBoolean(APIConstant.ISKITCHEN, false)
     }
 
+    fun setKitchenAddress(context: Context, restaurantAddress: String) {
+        val editor = getPref(context)
+        if (editor != null) {
+            editor.putString(APIConstant.RESTAURANT_ADDRESS, restaurantAddress)
+            editor.apply()
+            editor.commit()
+        }
+    }
+
+    fun getKitchenAddress(context: Context): String? {
+        val sharedPreferences: SharedPreferences =
+            context.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        return sharedPreferences.getString(APIConstant.RESTAURANT_ADDRESS, "")
+    }
 //    fun setUserFCMToken(mContext: Context, fcmToken: String?) {
 //        val editor = getPref(mContext)
 //        if (editor != null) {

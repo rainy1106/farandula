@@ -53,7 +53,7 @@ class OrderHistory {
     ) {
 
         fun getSubTotal(): String {
-            return "$\t$sub_total"
+            return "$\t$paid_amount"
         }
 
 
