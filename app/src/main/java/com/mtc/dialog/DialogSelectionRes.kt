@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mtc.R
+import com.mtc.api.APIConstant
 import com.mtc.general.SharedPreference
 import com.mtc.interfaces.EventHandler
 import com.mtc.utils.SimpleDividerItemDecoration
@@ -90,6 +91,10 @@ class DialogSelectionRes(
                 itemView.linearLayoutFree.setOnClickListener {
                     SharedPreference.setRestaurantId(itemView.context, selectionClass.restaurant_id)
                     SharedPreference.setRestaurantName(itemView.context, selectionClass.restaurant_name)
+                    SharedPreference.setKitchenTax(itemView.context,selectionClass.tax_percent.toFloat())
+                    SharedPreference.setKitchenAddress(itemView.context,selectionClass.restaurant_address)
+                    APIConstant.tax_percent = selectionClass.tax_percent
+                    APIConstant.restaurant_address_cons = selectionClass.restaurant_address
                     mEventHandler.onSuccess("table")
                 }
             }

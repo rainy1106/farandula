@@ -190,7 +190,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_8sdp" />
 
-            <Button
+      <!--      <Button
                     android:id="@+id/acceptOrder"
                     android:layout_width="@dimen/button_width_small"
                     android:layout_height="@dimen/_20sdp"
@@ -202,9 +202,9 @@
                     android:text="@string/accept_order"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_8sdp" />
+                    android:textSize="@dimen/_8sdp" />-->
 
-            <Button
+          <!--  <Button
                     android:id="@+id/orderReady"
                     android:layout_width="@dimen/button_width_small"
                     android:layout_height="@dimen/_20sdp"
@@ -217,10 +217,10 @@
                     android:text="@string/order_is_ready"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_8sdp" />
+                    android:textSize="@dimen/_8sdp" />-->
 
             <Button
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/printReceipt"
                     android:layout_width="@dimen/button_width_small"
                     android:layout_height="@dimen/_20sdp"
@@ -235,7 +235,6 @@
                     android:textSize="@dimen/_8sdp" />
 
             <Button
-                    android:visibility="gone"
                     android:id="@+id/closeOrder"
                     android:layout_width="@dimen/button_width_small"
                     android:layout_height="@dimen/_20sdp"
@@ -482,7 +481,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerViewOrder"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_130sdp"
+                        android:layout_height="@dimen/_100sdp"
                         android:layout_below="@id/orderLayout"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:nestedScrollingEnabled="false"
@@ -520,9 +519,9 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/grand_total_k"
+                    android:text="@string/total"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="@dimen/_8sdp"
                     android:textStyle="bold" />
 
             <TextView
@@ -535,7 +534,36 @@
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
         </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/freelayout"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@drawable/two_corner_bottom_round_black"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:padding="@dimen/_8sdp">
 
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/grand_total"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9sdp"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/totalCostDetailsTax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text=" $ 0.0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+        </LinearLayout>
         <TextView
                 android:id="@+id/noTextView"
                 android:layout_width="wrap_content"

@@ -16,7 +16,7 @@
     <string name="payment_informations">Payment Information</string>
     <string name="confirm_order">Confirm Order</string>
     <string name="pay_your_bill">Pay Your Bill</string>
-    <string name="grand_total">Grand Total \t\n+Tax(7%)</string>
+    <string name="grand_total">Grand Total \t+Tax</string>
     <string name="grand_total_k">Grand Total \t</string>
     <string name="have_a_promo_code">Have a promo code</string>
     <string name="apply_code">Apply Code</string>
@@ -153,4 +153,5 @@
     <string name="to_be_print">To be print</string>
     <string name="showing_to_be_print_items">Showing to be print orders</string>
     <string name="order_id_not_found">Order id not found for this notification , check server side data base</string>
+ <string name="finish">Finish</string>
 </resources>

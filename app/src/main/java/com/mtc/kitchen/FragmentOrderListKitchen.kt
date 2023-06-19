@@ -44,16 +44,16 @@ class FragmentOrderListKitchen : BaseFragment<FragmentOrdersBinding, OrdersViewM
             loadOrders(/*OrderType.ACCEPTED.type*/)
         }
 
-        mDataBinding.upComingOrders.setOnClickListener {
-            showData.text = getString(R.string.showing_upcoming_orders)
-            mViewModel.type.value = OrderType.UPCOMINGORDER.type
-            loadOrders(/*OrderType.UPCOMINGORDER.type*/)
-        }
-        mDataBinding.readyOrders.setOnClickListener {
-            showData.text = getString(R.string.showing_ready_orders)
-            mViewModel.type.value = OrderType.READY.type
-            loadOrders(/*OrderType.READY.type*/)
-        }
+//        mDataBinding.upComingOrders.setOnClickListener {
+//            showData.text = getString(R.string.showing_upcoming_orders)
+//            mViewModel.type.value = OrderType.UPCOMINGORDER.type
+//            loadOrders(/*OrderType.UPCOMINGORDER.type*/)
+//        }
+//        mDataBinding.readyOrders.setOnClickListener {
+//            showData.text = getString(R.string.showing_ready_orders)
+//            mViewModel.type.value = OrderType.READY.type
+//            loadOrders(/*OrderType.READY.type*/)
+//        }
         mDataBinding.toPrint.setOnClickListener {
             showData.text = getString(R.string.showing_to_be_print_items)
             mViewModel.type.value = "PAID"//OrderType.PAID.type
@@ -174,7 +174,7 @@ class FragmentOrderListKitchen : BaseFragment<FragmentOrdersBinding, OrdersViewM
             if (!connection.isConnected) {
                 mViewModel.showToast(getString(R.string.no_internet_connection), requireContext())
             } else {
-                mViewModel.type.value = OrderType.UPCOMINGORDER.type
+                mViewModel.type.value = OrderType.ACCEPTED.type
                 loadOrders()
                 // showData.text = getString(R.string.showing_upcoming_orders)
                 //loadOrders(OrderType.UPCOMINGORDER.type)

@@ -176,7 +176,7 @@ class MyOrderListViewModel : BaseViewModel() {
                     "&discount=0&txn_amount=0&txn_id=abc&payment_mode=${FragmentPayment.placeOrder.paymentType}" +
                     "&instractions=" + OrderListViewModel.instractions +
                     "&remark=" + arrayListProductIns.joinToString(separator = ",") +
-                    "&extra_items=" + arrayListProductEX.joinToString(separator = ",")//OrderListViewModel.extraItems.joinToString(separator = ",").trim() +
+                    "&status=ACCEPTED&extra_items=" + arrayListProductEX.joinToString(separator = ",")//OrderListViewModel.extraItems.joinToString(separator = ",").trim() +
 
 
         Log.v("PLACE_AN_ORDER", PLACE_AN_ORDER)

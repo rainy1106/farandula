@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mtc.BR
 import com.mtc.R
 import com.mtc.extension.dataBind
+import com.mtc.general.SharedPreference
+import kotlinx.android.synthetic.main.order_history_row.view.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class OrderHistoryAdapter(private var orderList: ArrayList<OrderHistory.Result>) :
 
@@ -28,7 +32,15 @@ class ItemViewHolder(val binding: ViewDataBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(order: OrderHistory.Result) {
         binding.setVariable(BR.viewModel, order)
+        binding.root.itemPrice.text = roundOffDecimal(order.sub_total.toDouble()).toString()
         //binding.setVariable(BR.listener, onDashboardClickListener)
+    }
+
+    private fun roundOffDecimal(number: Double): Double {
+        val withTax = (number * SharedPreference.getKitchenTax(binding.root.context)) / 100
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble().plus(withTax)
     }
     // endregion
 }

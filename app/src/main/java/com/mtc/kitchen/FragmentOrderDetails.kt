@@ -36,6 +36,7 @@ import com.mtc.databinding.FragmentOrderDetailsBinding
 import com.mtc.demoppdf.Common
 import com.mtc.demoppdf.PdfDocumentAdapter
 import com.mtc.general.BaseFragment
+import com.mtc.general.SharedPreference
 import com.mtc.general.initViewModel
 import com.mtc.interfaces.EventHandler
 import com.mtc.print.starprint.starprntsdk.Communication.CommunicationResult
@@ -105,8 +106,8 @@ open class FragmentOrderDetails() :
         setupRecyclerView()
 
         mDataBinding.chatwithcustomer.setOnClickListener(this)
-        mDataBinding.acceptOrder.setOnClickListener(this)
-        mDataBinding.orderReady.setOnClickListener(this)
+//        mDataBinding.acceptOrder.setOnClickListener(this)
+//        mDataBinding.orderReady.setOnClickListener(this)
         mDataBinding.printReceipt.setOnClickListener(this)
         mDataBinding.closeOrder.setOnClickListener(this)
     }
@@ -138,42 +139,44 @@ open class FragmentOrderDetails() :
                 getString(R.string.note).plus(" " + getList().extra_items)
 
 
+//        if (getList().getOrderStatus() == OrderType.ACCEPTED.name) {
+//            mDataBinding.acceptOrder.text = getString(R.string.order_accepted)
+//            mDataBinding.acceptOrder.visibility = View.GONE
+//            mDataBinding.orderReady.visibility = View.VISIBLE
+//        }
 
-        if (getList().getOrderStatus() == OrderType.ACCEPTED.name) {
-            mDataBinding.acceptOrder.text = getString(R.string.order_accepted)
-            mDataBinding.acceptOrder.visibility = View.GONE
-            mDataBinding.orderReady.visibility = View.VISIBLE
-        }
 
-
-        if (getList().getOrderStatus() == OrderType.READY.name) {
-            mDataBinding.acceptOrder.text = getString(R.string.order_accepted)
-            mDataBinding.orderReady.text = getString(R.string.served)
-            mDataBinding.chatwithcustomer.visibility = View.GONE
-            mDataBinding.acceptOrder.visibility = View.GONE
-            mDataBinding.printReceipt.visibility = View.VISIBLE
-            mDataBinding.closeOrder.visibility = View.VISIBLE
-        }
+//        if (getList().getOrderStatus() == OrderType.READY.name) {
+//            mDataBinding.acceptOrder.text = getString(R.string.order_accepted)
+//            mDataBinding.orderReady.text = getString(R.string.served)
+//            mDataBinding.chatwithcustomer.visibility = View.GONE
+//            mDataBinding.acceptOrder.visibility = View.GONE
+//            mDataBinding.printReceipt.visibility = View.VISIBLE
+//            mDataBinding.closeOrder.visibility = View.VISIBLE
+//        }
 
         if (getList().getOrderStatus() == OrderType.ONLYPAID.type) {
 //            mDataBinding.acceptOrder.text = getString(R.string.order_accepted)
 //            mDataBinding.orderReady.text = getString(R.string.served)
             mDataBinding.chatwithcustomer.visibility = View.GONE
-            mDataBinding.acceptOrder.visibility = View.GONE
-            mDataBinding.orderReady.visibility = View.GONE
+//            mDataBinding.acceptOrder.visibility = View.GONE
+//            mDataBinding.orderReady.visibility = View.GONE
             mDataBinding.printReceipt.visibility = View.VISIBLE
             mDataBinding.closeOrder.visibility = View.VISIBLE
         }
 
         val roundoff =
-            roundOffDecimal(mViewModel.getTotalCost(getList()))//(mViewModel.getTotalCost(getList()) * 100.0).roundToInt() / 100.0
+            mViewModel.getTotalCost(getList())//(mViewModel.getTotalCost(getList()) * 100.0).roundToInt() / 100.0
         "$ $roundoff".also { totalCostDetails.text = it }
+        val roundoff2 = roundOffDecimal(mViewModel.getTotalCost(getList())).toString()
+        "$ $roundoff2".also { totalCostDetailsTax.text = it }
     }
 
-    fun roundOffDecimal(number: Double): Double {
+    private fun roundOffDecimal(number: Double): Double {
+        val withTax = (number * SharedPreference.getKitchenTax(mDataBinding.root.context)) / 100
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
-        return df.format(number).toDouble()
+        return df.format(number).toDouble().plus(withTax)
     }
 
     override fun onClick(view: View?) {
@@ -193,91 +196,91 @@ open class FragmentOrderDetails() :
                 }
                 replaceFragment(fragmentMessages)
             }
-            R.id.acceptOrder -> {
-                if (acceptOrder.text.equals("Order Accepted")) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Order is already Accepted",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-                } else {
-                    acceptOrder.text = "Order Accepted"
-                    val progressDialog = ProgressDialog(context)
-                    progressDialog.setCancelable(true)
-                    progressDialog.setMessage("Informing user , Please wait...")
-                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-                    progressDialog.show()
-                    mViewModel.updateOrderAccept(requireContext(), getList().order_id,
-                        object : EventHandler {
-                            override fun onComplete() {
-                                super.onComplete()
-                                progressDialog.dismiss()
-                            }
-
-                            override fun onSuccess() {
-                                super.onSuccess()
-                                replaceFragment(FragmentOrderListKitchen.newInstance())
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Order Accepted",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-//                                acceptOrder.text = "Order Accepted"
-                            }
-
-                            override fun onFailure(toString: String) {
-                                super.onFailure(toString)
-                                acceptOrder.text = requireContext().getString(R.string.accept_order)
-                                Toast.makeText(requireContext(), toString, Toast.LENGTH_SHORT)
-                                    .show()
-                            }
-                        })
-                }
-
-
-            }
-            R.id.orderReady -> {
-
-                if (orderReady.text.equals("Served")) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Order is served",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-                } else {
-                    orderReady.text = "Served"
-                    val progressDialog = ProgressDialog(context)
-                    progressDialog.setCancelable(true)
-                    progressDialog.setMessage("Informing user , Please wait...")
-                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-                    progressDialog.show()
-                    mViewModel.updateOrderIsReady(
-                        requireContext(),
-                        getList().order_id,
-                        object : EventHandler {
-                            override fun onSuccess() {
-                                super.onSuccess()
-                                replaceFragment(FragmentOrderListKitchen.newInstance())
-                            }
-
-                            override fun onFailure(toString: String) {
-                                super.onFailure(toString)
-                                orderReady.text = getString(R.string.order_is_ready)
-                                Toast.makeText(requireContext(), toString, Toast.LENGTH_SHORT)
-                                    .show()
-                            }
-
-                            override fun onComplete() {
-                                super.onComplete()
-                                progressDialog.dismiss()
-                            }
-                        })
-                }
-
-
-            }
+//            R.id.acceptOrder -> {
+//                if (acceptOrder.text.equals("Order Accepted")) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "Order is already Accepted",
+//                        Toast.LENGTH_SHORT
+//                    )
+//                        .show()
+//                } else {
+//                    acceptOrder.text = "Order Accepted"
+//                    val progressDialog = ProgressDialog(context)
+//                    progressDialog.setCancelable(true)
+//                    progressDialog.setMessage("Informing user , Please wait...")
+//                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+//                    progressDialog.show()
+//                    mViewModel.updateOrderAccept(requireContext(), getList().order_id,
+//                        object : EventHandler {
+//                            override fun onComplete() {
+//                                super.onComplete()
+//                                progressDialog.dismiss()
+//                            }
+//
+//                            override fun onSuccess() {
+//                                super.onSuccess()
+//                                replaceFragment(FragmentOrderListKitchen.newInstance())
+//                                Toast.makeText(
+//                                    requireContext(),
+//                                    "Order Accepted",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+////                                acceptOrder.text = "Order Accepted"
+//                            }
+//
+//                            override fun onFailure(toString: String) {
+//                                super.onFailure(toString)
+//                                acceptOrder.text = requireContext().getString(R.string.accept_order)
+//                                Toast.makeText(requireContext(), toString, Toast.LENGTH_SHORT)
+//                                    .show()
+//                            }
+//                        })
+//                }
+//
+//
+//            }
+//            R.id.orderReady -> {
+//
+//                if (orderReady.text.equals("Served")) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "Order is served",
+//                        Toast.LENGTH_SHORT
+//                    )
+//                        .show()
+//                } else {
+//                    orderReady.text = "Served"
+//                    val progressDialog = ProgressDialog(context)
+//                    progressDialog.setCancelable(true)
+//                    progressDialog.setMessage("Informing user , Please wait...")
+//                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+//                    progressDialog.show()
+//                    mViewModel.updateOrderIsReady(
+//                        requireContext(),
+//                        getList().order_id,
+//                        object : EventHandler {
+//                            override fun onSuccess() {
+//                                super.onSuccess()
+//                                replaceFragment(FragmentOrderListKitchen.newInstance())
+//                            }
+//
+//                            override fun onFailure(toString: String) {
+//                                super.onFailure(toString)
+//                                orderReady.text = getString(R.string.order_is_ready)
+//                                Toast.makeText(requireContext(), toString, Toast.LENGTH_SHORT)
+//                                    .show()
+//                            }
+//
+//                            override fun onComplete() {
+//                                super.onComplete()
+//                                progressDialog.dismiss()
+//                            }
+//                        })
+//                }
+//
+//
+//            }
             R.id.printReceipt -> {
 
                 var intent = Intent(requireContext(), MainActivity::class.java)

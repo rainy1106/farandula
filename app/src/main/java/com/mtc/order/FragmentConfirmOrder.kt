@@ -1,6 +1,8 @@
 package com.mtc.order
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,10 +22,15 @@ import com.mtc.dialog.DialogChatUser
 import com.mtc.general.BaseFragment
 import com.mtc.general.SharedPreference
 import com.mtc.general.initViewModel
+import com.mtc.home.HomeActivity
 import com.mtc.kitchen.OrdersViewModel
-import com.mtc.payment.FragmentPayment
+import com.mtc.print.starprint.starprntsdk.Communication
+import com.mtc.print.starprint.starprntsdk.MainActivity
 import com.mtc.utils.SimpleDividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_confirm_order.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import kotlin.system.exitProcess
 
 class FragmentConfirmOrder :
     BaseFragment<FragmentConfirmOrderBinding, ConfirmOrderListViewModel>(), View.OnClickListener {
@@ -54,6 +61,8 @@ class FragmentConfirmOrder :
         onClickAddMoreList.setOnClickListener(this)
         onClickPlaceOrder.setOnClickListener(this)
         sendInstructionButton.setOnClickListener(this)
+        finish.setOnClickListener(this)
+        printUser.setOnClickListener(this)
         mDataBinding.onClickPlaceOrder.isEnabled = false
         mDataBinding.onClickAddMoreList.isEnabled = true
         userOrderImages.setImageResource(R.drawable.chefimages)
@@ -86,9 +95,11 @@ class FragmentConfirmOrder :
     }
 
 
+    @SuppressLint("SetTextI18n")
     fun costObserver() {
         mViewModel.totalCost.observe {
             totalCost.text = it
+            totalCostT.text = "$ ${roundOffDecimal(it.replace("$", "").trim().toDouble())}"
         }
         OrdersViewModel.userUpdates.observe {
             mDataBinding.onClickPlaceOrder.isEnabled = it.equals("ORDER IS READY")
@@ -99,15 +110,31 @@ class FragmentConfirmOrder :
                 userOrderImages.setImageResource(R.drawable.chefimages)
         }
     }
-
+    private fun roundOffDecimal(number: Double): Double {
+        val withTax = (number * SharedPreference.getKitchenTax(requireContext())) / 100
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble().plus(withTax)
+    }
 
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.onClickAddMoreList -> {
                 replaceFragment(FragmentOrderList.newInstance())
             }
+            R.id.printUser -> {
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
+                Communication.CommunicationResult.count = 1;
+            }
+            R.id.finish -> {
+                val intent = Intent(context, HomeActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                exitProcess(0)
+            }
             R.id.onClickPlaceOrder -> {
-                replaceFragment(FragmentPayment.newInstance())
+                // replaceFragment(FragmentPayment.newInstance())
                 //  mViewModel._animationOne.value = 1
             }
             R.id.sendInstructionButton -> {

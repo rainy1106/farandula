@@ -70,7 +70,7 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
 //        }
         DecimalFormat numberFormat = new DecimalFormat("##.##");
         String roundoff = numberFormat.format(total);
-        double tax = ((total * 7) / 100.0);
+        double tax = ((total * Double.parseDouble(APIConstant.tax_percent)) / 100.0);
         double full_total = Double.valueOf(roundoff) + tax;
         String _full_total = numberFormat.format(full_total);
         builder.appendAlignment(AlignmentPosition.Center);

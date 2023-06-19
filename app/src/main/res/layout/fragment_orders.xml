@@ -127,7 +127,7 @@
                         tools:ignore="MissingConstraints" />
                 <!--android:onClick="@{() -> viewModel.onClickUpComingOrder()}"-->
                 <Button
-
+                        android:visibility="gone"
                         android:id="@+id/upComingOrders"
                         style="?android:attr/borderlessButtonStyle"
                         android:layout_width="@dimen/button_width_small"
@@ -168,6 +168,7 @@
                         tools:ignore="MissingConstraints" />
 
                 <Button
+                        android:visibility="gone"
                         android:id="@+id/readyOrders"
                         style="?android:attr/borderlessButtonStyle"
                         android:layout_width="@dimen/button_width_small"
@@ -184,7 +185,8 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:visibility="gone"   android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp">
 
@@ -229,14 +231,18 @@
                 android:id="@+id/showData"
                 android:layout_below="@+id/orderLayout"
                 android:text="Showing new Orders"
+                android:visibility="gone"
                 android:padding="@dimen/_6sdp"
                 android:clickable="false"
                 android:background="@drawable/round_background_cyan"
-                android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/_8sdp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp" />
 
         <!--<com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/progressBar"

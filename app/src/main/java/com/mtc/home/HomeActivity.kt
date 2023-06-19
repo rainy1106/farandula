@@ -134,8 +134,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), View.On
 
 
         OrdersViewModel.userUpdates.observe {
-            if (OrderListViewModel.orderListSelected.size != 0 && it.toString().isNotBlank())
-                showAlert(it)
+//            if (OrderListViewModel.orderListSelected.size != 0 && it.toString().isNotBlank())
+//                showAlert(it)
         }
 
         mViewModel.categoryList.observe(this) {
