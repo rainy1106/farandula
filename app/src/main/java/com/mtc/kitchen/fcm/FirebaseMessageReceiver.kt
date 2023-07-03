@@ -55,10 +55,14 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
             Log.v("key", key)
             Log.v("FIREMESSAGE", remoteMessage.toIntent().extras?.get("message").toString())
             if (key == "NEW ORDER") {
-                OrdersViewModel.newOrder.postValue(OrderType.NEWORDER.type/*true*/)
+                OrdersViewModel.newOrder.postValue(OrderType.ACCEPTED.type/*true*/)
                 showNotificationNew("Farandula", message)
             }
-
+            if(key == "ORDER UPDATED")
+            {
+                OrdersViewModel.newOrder.postValue(OrderType.ACCEPTED.type/*true*/)
+                showNotificationNew("Farandula", message)
+            }
             if (key == OrderType.UPCOMINGORDER.type)
                 OrdersViewModel.newOrder.postValue(OrderType.UPCOMINGORDER.type/*true*/)
 

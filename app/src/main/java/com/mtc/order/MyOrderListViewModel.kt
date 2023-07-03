@@ -1,7 +1,14 @@
 package com.mtc.order
 
+import android.R
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.util.Log
+import android.view.View
+import android.view.View.OnClickListener
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,6 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+
 
 class MyOrderListViewModel : BaseViewModel() {
 
@@ -79,7 +87,7 @@ class MyOrderListViewModel : BaseViewModel() {
                 } catch (ex: Exception) {
                     Toast.makeText(context, "Network Issue , please retry!", Toast.LENGTH_SHORT)
                         .show()
-                   // updateOrder(context, mEventHandler)
+                    // updateOrder(context, mEventHandler)
                 }
             }
         }
@@ -123,6 +131,7 @@ class MyOrderListViewModel : BaseViewModel() {
         val UPDATE_ORDER =
             "update_order?order_id=${FragmentPayment.order_id}" +
                     "&product_id=" + arrayListProductId.joinToString(separator = ",") +
+                    "&general_note=${OrderListViewModel.generalNote}" +
                     "&quantity=" + arrayListProductQ.joinToString(separator = ",") +
                     "&price=" + arrayListProductP.joinToString(separator = ",") +
                     "&sub_total=${FragmentPayment.placeOrder.grandTotal.trim()}" +
@@ -169,6 +178,7 @@ class MyOrderListViewModel : BaseViewModel() {
             "place_an_order?restaurant_id=${SharedPreference.getRestaurantId(context)}" +
                     "&table_id=${SharedPreference.getTableId(context)}" +
                     "&seat_id=${SharedPreference.getSeatId(context)}" +
+                    "&general_note=${OrderListViewModel.generalNote}" +
                     "&product_id=" + arrayListProductId.joinToString(separator = ",") +
                     "&quantity=" + arrayListProductQ.joinToString(separator = ",") +
                     "&price=" + arrayListProductP.joinToString(separator = ",") +
@@ -189,5 +199,6 @@ class MyOrderListViewModel : BaseViewModel() {
             OrderListViewModel.orderListSelected[i].isAdded = false
         }
     }
+
 
 }

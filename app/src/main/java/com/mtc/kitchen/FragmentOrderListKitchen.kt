@@ -66,15 +66,15 @@ class FragmentOrderListKitchen : BaseFragment<FragmentOrdersBinding, OrdersViewM
             loadOrders(/*it*/)
         }
 
-        mViewModel.readyCount.observe {
-            readyOrdersB.badgeValue = it.toInt()//newOrdersB.badgeValue.plus(it.toInt())
-        }
+//        mViewModel.readyCount.observe {
+//            readyOrdersB.badgeValue = it.toInt()//newOrdersB.badgeValue.plus(it.toInt())
+//        }
         mViewModel.newOrderCount.observe {
             newOrdersB.badgeValue = it.toInt()//newOrdersB.badgeValue.plus(it.toInt())
         }
-        mViewModel.upComingCount.observe {
-            upComingOrdersB.badgeValue = it.toInt() //upComingOrdersB.badgeValue.plus(it.toInt())
-        }
+//        mViewModel.upComingCount.observe {
+//            upComingOrdersB.badgeValue = it.toInt() //upComingOrdersB.badgeValue.plus(it.toInt())
+//        }
         mViewModel.toBePrint.observe {
             toPrintB.badgeValue = it.toInt() //upComingOrdersB.badgeValue.plus(it.toInt())
         }
@@ -311,14 +311,14 @@ class FragmentOrderListKitchen : BaseFragment<FragmentOrdersBinding, OrdersViewM
         var countR: Int = 0 // new
         var countP: Int = 0 //paid
         mList.forEach {
-            if (it.getOrderStatus() == OrderType.UPCOMINGORDER.name)
-                countU = countU.plus(1)
-            else if (it.getOrderStatus() == OrderType.ACCEPTED.name)
+//            if (it.getOrderStatus() == OrderType.UPCOMINGORDER.name)
+//                countU = countU.plus(1)
+             if (it.getOrderStatus() == OrderType.ACCEPTED.name)
                 countN = countN.plus(1)
-            else if (it.getOrderStatus() == OrderType.READY.name || it.getOrderStatus() == "PAID")
-                countR = countR.plus(1)
-            else if (it.getOrderStatus() == "PAID")
-                countP = countP.plus(1)
+//            else if (it.getOrderStatus() == OrderType.READY.name || it.getOrderStatus() == "PAID")
+//                countR = countR.plus(1)
+//            else if (it.getOrderStatus() == "PAID")
+//                countP = countP.plus(1)
         }
         //  upComingOrdersB.badgeValue = countU
         mViewModel.updateNewOrderCount(

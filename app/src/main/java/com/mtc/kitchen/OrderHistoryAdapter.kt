@@ -40,7 +40,7 @@ class ItemViewHolder(val binding: ViewDataBinding) :
         val withTax = (number * SharedPreference.getKitchenTax(binding.root.context)) / 100
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
-        return df.format(number).toDouble().plus(withTax)
+        return df.format(number.plus(withTax)).toDouble()
     }
     // endregion
 }

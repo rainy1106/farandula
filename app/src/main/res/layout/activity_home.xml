@@ -309,24 +309,23 @@
 
         <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/_1sdp"
                 android:layout_weight="0.75"
                 android:background="@drawable/round_background_white">
 
-            <ImageView
+            <!--<ImageView
                     android:id="@+id/freeimage1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_75sdp"
                     android:background="@drawable/background"
                     android:scaleType="fitXY"
-                    android:src="@drawable/logo_image" />
+                    android:src="@drawable/logo_image" />-->
 
             <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/container"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/freeimage1" />
+                    android:layout_height="match_parent"/>
         </RelativeLayout>
 
     </LinearLayout>

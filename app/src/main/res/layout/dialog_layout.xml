@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:padding="@dimen/_15sdp"
+        android:background="@drawable/round_background_black_border"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="match_parent">
+
+    <ImageView
+            android:id="@+id/freeImage"
+            android:layout_width="@dimen/_15sdp"
+            android:background="@drawable/ic_cross"
+            android:layout_alignParentEnd="true"
+            android:layout_height="@dimen/_15sdp"
+            android:contentDescription="@string/cancle" />
+
+    <TextView
+            android:layout_below="@id/freeImage"
+            android:padding="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_12sdp"
+            android:textAlignment="center"
+            android:hint="@string/add_general_note"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:text="@string/add_general_note"
+            android:layout_marginTop="10dp"
+            android:id="@+id/text" />
+
+    <EditText
+            android:padding="@dimen/_12sdp"
+            android:background="@drawable/edit_text_border"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_10sdp"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:maxLines="5"
+            android:text=""
+            android:singleLine="false"
+            android:id="@+id/editTextGeneral"
+            android:layout_below="@+id/text" />
+
+
+    -
+
+    <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_below="@id/editTextGeneral"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_centerHorizontal="true">
+
+        <Button
+                android:padding="@dimen/_8sdp"
+                android:background="@drawable/button_selector_effect_reverse"
+                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_120sdp"
+                android:textSize="@dimen/_8sdp"
+                android:textColor="@color/text_selector_effect"
+                android:text="@string/submit"
+                android:id="@+id/submit"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

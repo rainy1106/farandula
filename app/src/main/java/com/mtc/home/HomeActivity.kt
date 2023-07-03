@@ -9,7 +9,11 @@ import android.widget.ExpandableListAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.mtc.BR
 import com.mtc.R
 import com.mtc.api.APIConstant
 import com.mtc.databinding.ActivityHomeBinding
@@ -34,10 +38,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), View.On
     private var connectionMode: ConnectionModel? = null
     private var adapter: ExpandableListAdapter? = null
     private var titleList: List<String>? = null
-
+    private lateinit var analytics: FirebaseAnalytics
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        analytics = Firebase.analytics
         mDataBinding.viewModel = getViewModel()
         orderListButton.setOnClickListener(this)
         replaceFragment(FragmentOrderList.newInstance())
@@ -47,6 +51,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), View.On
 
     override fun onResume() {
         super.onResume()
+        setBanner()
         ConnectionLiveData(this).observe {
             connectionMode = it
             restart(it)
@@ -84,21 +89,16 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), View.On
 //    }//---
 
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun  replaceFragment(fragment: Fragment) {
         val manager = supportFragmentManager
-//        var prevFragment = manager.findFragmentByTag(fragment::class.java.simpleName)
-//        if (prevFragment == null) // if none were found, create it
-//            prevFragment = fragment
         val transaction = manager.beginTransaction()
-        transaction.add(R.id.container, fragment, fragment::class.java.simpleName)
-        //transaction.addToBackStack(null)
+        transaction.replace(R.id.container, fragment, fragment::class.java.simpleName)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 
 
-    override fun getBindingVariable(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getBindingVariable(): Int = BR.viewModel
 
     override fun getLayoutId(): Int = R.layout.activity_home
 
@@ -119,7 +119,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), View.On
 
 
         OrdersViewModel.showDialog.observe {
-            if (it){
+            if (it) {
                 try {
                     FirebaseDatabase.getInstance().reference.child(APIConstant.CHATS_ROOM_NEW)
                         .child(SharedPreference.getTableId(this@HomeActivity)!!)
@@ -142,18 +142,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), View.On
             Log.e("ResSize", "" + it.size + "::" + it)
             setExpandableView(it)
         }
-        mViewModel.banner.observe(this) {
-            try {
-                Picasso.get().load(it).into(freeimage)
-            } catch (ex: Exception) {
-                freeimage.setImageResource(R.drawable.na)
-            }
-            try {
-                Picasso.get().load(it).into(freeimage1)
-            } catch (ex: Exception) {
-                freeimage1.setImageResource(R.drawable.na)
-            }
-        }
+
         reportHomeButton.observe {
             if (it != "0")
                 (getString(R.string.your_order_is) + " : $ $it").also {
@@ -216,10 +205,16 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), View.On
     }
 
     private fun setBanner() {
-//        val commonAPI = CommonApi()
-//        commonAPI.getBanner(this@HomeActivity, this)
-        mViewModel.setBanner()
-
+        mViewModel.setBanner(this@HomeActivity)
+        mViewModel.banner.observe(this) {
+            try {
+                if (APIConstant.BANNER_URL.isNotEmpty())
+                Picasso.get().load(APIConstant.BANNER_URL).into(freeimage)
+                else freeimage.setImageResource(R.drawable.na)
+            } catch (ex: Exception) {
+                freeimage.setImageResource(R.drawable.na)
+            }
+        }
     }
 
     private fun setExpandableView(arrayList: ArrayList<Category>) {

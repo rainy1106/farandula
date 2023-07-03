@@ -37,7 +37,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), E
 
     private fun playVideo() {
 
-        //setKitchen()
+       // setKitchen()
         setFarandula()
     }
 

@@ -235,12 +235,15 @@ object SharedPreference {
             editor.commit()
         }
     }
+
     fun getKitchenTax(context: Context): Float {
         val sharedPreferences: SharedPreferences =
             context.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         return sharedPreferences.getFloat(APIConstant.TAX_PERCENT, 0F)
     }
-//    fun setUserFCMToken(mContext: Context, fcmToken: String?) {
+
+
+    //    fun setUserFCMToken(mContext: Context, fcmToken: String?) {
 //        val editor = getPref(mContext)
 //        if (editor != null) {
 //            editor.putString(APIConstant.FCMUSER, fcmToken)

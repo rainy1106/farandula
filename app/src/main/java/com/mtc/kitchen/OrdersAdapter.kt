@@ -61,6 +61,7 @@ class ViewOHolder(val itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.cardx2.text = "X2 extra\t"
         itemView.textViewTotalKitchen.text = "$ " + setTotal(order.cart)
         itemView.subtablenameOnly.text = order.getSubTableNameOnly()
+        itemView.generalNoteKitchenText.text = order.getGeneralNote()
 
 
         val card = order.cart

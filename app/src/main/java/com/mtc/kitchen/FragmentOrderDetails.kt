@@ -120,9 +120,9 @@ open class FragmentOrderDetails() :
         mViewModel.newOrderCount.observe {
             newOrdersBDetail.badgeValue = it.toInt()
         }
-        mViewModel.upComingCount.observe {
-            upComingOrdersBDetail.badgeValue = it.toInt()
-        }
+//        mViewModel.upComingCount.observe {
+//            upComingOrdersBDetail.badgeValue = it.toInt()
+//        }
     }
 
     private fun loadData() {
@@ -130,6 +130,7 @@ open class FragmentOrderDetails() :
         mDataBinding.subtablename.text = getList().seat_name
         mDataBinding.date.text = getList().getTDate()
         mDataBinding.dateTime.text = getList().getTime()
+        mDataBinding.generalNotes.text = getList().getGeneralNote()
 
         if (getList().instractions.trim().isEmpty())
             mDataBinding.note.text =
@@ -165,18 +166,24 @@ open class FragmentOrderDetails() :
             mDataBinding.closeOrder.visibility = View.VISIBLE
         }
 
-        val roundoff =
-            mViewModel.getTotalCost(getList())//(mViewModel.getTotalCost(getList()) * 100.0).roundToInt() / 100.0
+        val roundoff =roundOffDecimalWithoutTax(
+            mViewModel.getTotalCost(getList()))//(mViewModel.getTotalCost(getList()) * 100.0).roundToInt() / 100.0
         "$ $roundoff".also { totalCostDetails.text = it }
         val roundoff2 = roundOffDecimal(mViewModel.getTotalCost(getList())).toString()
         "$ $roundoff2".also { totalCostDetailsTax.text = it }
     }
 
-    private fun roundOffDecimal(number: Double): Double {
-        val withTax = (number * SharedPreference.getKitchenTax(mDataBinding.root.context)) / 100
+    private fun roundOffDecimalWithoutTax(number: Double): Double {
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
-        return df.format(number).toDouble().plus(withTax)
+        return df.format(number).toDouble()
+    }
+    private fun roundOffDecimal(number: Double): Double {
+        val withTax = (number * SharedPreference.getKitchenTax(mDataBinding.root.context)) / 100
+        val price =number.plus(withTax)
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(price).toDouble()
     }
 
     override fun onClick(view: View?) {
@@ -693,6 +700,33 @@ open class FragmentOrderDetails() :
 
     fun setList(_arrayList: OrderListItem.Result) {
         arrayList = _arrayList
+
+        printArray = OrderListItem.Result(
+            order_id = "",
+            restaurant_id = "",
+            table_id = "",
+            seat_id = "",
+            date = "",
+            datetime = "",
+            extra_items = "",
+            instractions = "",
+            general_note = "",
+            sub_total = "",
+            discount = "",
+            txn_amount = "",
+            txn_id = "",
+            payment_mode = "",
+            payment_by = "",
+            payment_status = "",
+            status = "",
+            promocode = "",
+            entrydt = "",
+            seat_name = "",
+            table_name = "",
+            reviewed = "",
+            time_ago = "",
+            cart = ArrayList<OrderListItem.Cart>()
+        )
         printArray = arrayList
     }
 

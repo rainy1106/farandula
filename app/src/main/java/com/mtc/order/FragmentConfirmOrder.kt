@@ -3,6 +3,7 @@ package com.mtc.order
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,16 +21,27 @@ import com.mtc.api.APIConstant
 import com.mtc.databinding.FragmentConfirmOrderBinding
 import com.mtc.dialog.DialogChatUser
 import com.mtc.general.BaseFragment
+import com.mtc.general.BaseViewModel
 import com.mtc.general.SharedPreference
 import com.mtc.general.initViewModel
 import com.mtc.home.HomeActivity
+import com.mtc.interfaces.onResponseAPI
+import com.mtc.kitchen.FragmentOrderDetails
+import com.mtc.kitchen.FragmentOrderDetails.Companion.arrayList
+import com.mtc.kitchen.OrderListItem
 import com.mtc.kitchen.OrdersViewModel
+import com.mtc.payment.FragmentPayment
+import com.mtc.payment.FragmentPayment.Companion.order_id
 import com.mtc.print.starprint.starprntsdk.Communication
 import com.mtc.print.starprint.starprntsdk.MainActivity
 import com.mtc.utils.SimpleDividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_confirm_order.*
 import java.math.RoundingMode
+import java.text.DateFormat
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.system.exitProcess
 
 class FragmentConfirmOrder :
@@ -110,11 +122,12 @@ class FragmentConfirmOrder :
                 userOrderImages.setImageResource(R.drawable.chefimages)
         }
     }
+
     private fun roundOffDecimal(number: Double): Double {
         val withTax = (number * SharedPreference.getKitchenTax(requireContext())) / 100
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
-        return df.format(number).toDouble().plus(withTax)
+        return df.format(number.plus(withTax)).toDouble()
     }
 
     override fun onClick(view: View?) {
@@ -123,15 +136,71 @@ class FragmentConfirmOrder :
                 replaceFragment(FragmentOrderList.newInstance())
             }
             R.id.printUser -> {
-                val intent = Intent(requireContext(), MainActivity::class.java)
-                startActivity(intent)
-                Communication.CommunicationResult.count = 1;
+                Communication.CommunicationResult.count = 0;
+                showLoader(getString(R.string.loading_data))
+                mViewModel.getOrderDetails(
+                    requireContext(),
+                    order_id,
+                    object : onResponseAPI {
+                        override fun onSuccessKitchenOrderListItemRow(result: OrderListItem.Result) {
+                            hideLoader()
+                            FragmentOrderDetails.printArray = OrderListItem.Result(
+                                order_id = "",
+                                restaurant_id = "",
+                                table_id = "",
+                                seat_id = "",
+                                date = "",
+                                datetime = "",
+                                extra_items = "",
+                                instractions = "",
+                                general_note = "",
+                                sub_total = "",
+                                discount = "",
+                                txn_amount = "",
+                                txn_id = "",
+                                payment_mode = "",
+                                payment_by = "",
+                                payment_status = "",
+                                status = "",
+                                promocode = "",
+                                entrydt = "",
+                                seat_name = "",
+                                table_name = "",
+                                reviewed = "",
+                                time_ago = "",
+                                cart = java.util.ArrayList<OrderListItem.Cart>()
+                            )
+                            FragmentOrderDetails.printArray = result
+                            val intent = Intent(requireContext(), MainActivity::class.java)
+                            startActivity(intent)
+                        }
+
+                        override fun onFailure() {
+                            hideLoader()
+                        }
+                    })
             }
             R.id.finish -> {
-                val intent = Intent(context, HomeActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                exitProcess(0)
+
+                try {
+                    FirebaseDatabase.getInstance().reference.child(APIConstant.CHATS_ROOM_NEW)
+                        .child(SharedPreference.getTableId(requireActivity())!!)
+                        .ref.removeValue { _, ref -> Log.v("Ref", ref.toString()) }
+                } catch (ex: Exception) {
+                    ex.printStackTrace()
+                } finally {
+                    order_id = ""
+                    BaseViewModel._reportHomeButton.value = ""
+                    OrderListViewModel.orderListSelected.clear()
+                    OrderListViewModel.instractions = ""
+                    OrderListViewModel.extraItems.clear()
+                    OrderListViewModel.generalNote = ""
+                    val intent = Intent(context, HomeActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
+
             }
             R.id.onClickPlaceOrder -> {
                 // replaceFragment(FragmentPayment.newInstance())
@@ -148,8 +217,17 @@ class FragmentConfirmOrder :
         }
     }
 
+    private fun getDate(): String {
+        val cal = Calendar.getInstance()
+        return formatDate(cal.time)
+    }
 
-    fun showKitchenMessageToUser() {
+    private fun formatDate(dateString: Date): String {
+        val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        return dateFormat.format(dateString)
+    }
+
+    private fun showKitchenMessageToUser() {
         val dialog = DialogChatUser(requireActivity())
 //        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.bounce);
 //        animation.repeatCount = Animation.INFINITE

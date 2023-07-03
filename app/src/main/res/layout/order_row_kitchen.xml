@@ -23,7 +23,18 @@
                     android:layout_margin="@dimen/_4sdp"
                     android:orientation="vertical">
 
+                <TextView
+                        android:id="@+id/generalNoteKitchenText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold"
+                        android:maxLines="2"
+                        tools:text="general note" />
+
                 <LinearLayout
+                        android:layout_marginTop="@dimen/_2sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
