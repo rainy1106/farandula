@@ -109,7 +109,8 @@ class BaseRepository {
         val restaurantId = SharedPreference.getRestaurantKitchen(context)
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val currentDate = sdf.format(Date())
-        val urlPath = "get_order?restaurant_id=${restaurantId}"//&date=${currentDate}
+        val urlPath =
+            "get_order?restaurant_id=${restaurantId}&status=ACCEPTED&date=${currentDate}"
         val urlLine: String = APIConstant().getApiBaseUrl(urlPath)
         CoroutineScope(Dispatchers.IO).launch {
             val rss = NetworkUtility.APIrequest(urlLine)
@@ -121,16 +122,7 @@ class BaseRepository {
                 } catch (ex: Exception) {
                     Toast.makeText(context, "Network Error, please try again..", Toast.LENGTH_SHORT)
                         .show()
-//                    getOrders(
-//                        context,
-//                        productList,
-//                        updateBadgeCount
-//                    )
                 }
-                // call to UI thread
-                //isLoadingData = false
-                //showProgress.value = false
-                // usersList.value?.addAll(parseJsonString(rss.toString()))
             }
         }
     }

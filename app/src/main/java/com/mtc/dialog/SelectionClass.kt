@@ -10,5 +10,7 @@ class SelectionClass(
     var restaurant_image: String,
     var status: String,
     var entrydt: String,
-    var restaurant_code: String
+    var restaurant_code: String,
+    var tax_percent: String,
+    var restaurant_address: String
 )

@@ -54,9 +54,15 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
             Log.v("message", message)
             Log.v("key", key)
             Log.v("FIREMESSAGE", remoteMessage.toIntent().extras?.get("message").toString())
-            if (key == "NEW ORDER")
-                OrdersViewModel.newOrder.postValue(OrderType.NEWORDER.type/*true*/)
-
+            if (key == "NEW ORDER") {
+                OrdersViewModel.newOrder.postValue(OrderType.ACCEPTED.type/*true*/)
+                showNotificationNew("Farandula", message)
+            }
+            if(key == "ORDER UPDATED")
+            {
+                OrdersViewModel.newOrder.postValue(OrderType.ACCEPTED.type/*true*/)
+                showNotificationNew("Farandula", message)
+            }
             if (key == OrderType.UPCOMINGORDER.type)
                 OrdersViewModel.newOrder.postValue(OrderType.UPCOMINGORDER.type/*true*/)
 
@@ -104,13 +110,14 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
             if (key == "ORDER HAS ACCEPTED") {
                 OrdersViewModel.newOrder.postValue(OrderType.ACCEPTED.type/*true*/)
                 OrdersViewModel.userUpdates.postValue("ORDER HAS ACCEPTED")
+                showNotificationNew("Farandula", message)
             }
             if (key == "ORDER IS READY") {
                 OrdersViewModel.userUpdates.postValue("ORDER IS READY")
             }
-            if (key == "ORDER UPDATED") {
-                OrdersViewModel.newOrder.postValue(OrderType.UPCOMINGORDER.type/*true*/)
-            }
+//            if (key == "ORDER UPDATED") {
+//                OrdersViewModel.newOrder.postValue(OrderType.UPCOMINGORDER.type/*true*/)
+//            }
             if (key == "LOGOUT" && SharedPreference.isKitchen(this) == true) {
 //                SharedPreference.clear(applicationContext)
 //                clearApplicationData()
@@ -129,7 +136,7 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
-            showNotificationNew("Farandula", message)
+
         }
     }
 

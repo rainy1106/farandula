@@ -11,6 +11,7 @@ import com.mtc.general.SharedPreference;
 import com.mtc.kitchen.FragmentOrderDetails;
 import com.mtc.kitchen.OrderListItem;
 import com.mtc.print.starprint.starprntsdk.PrinterSettingConstant;
+import com.mtc.utils.MyAppContext;
 import com.starmicronics.starioextension.ICommandBuilder;
 import com.starmicronics.starioextension.ICommandBuilder.AlignmentPosition;
 import com.starmicronics.starioextension.ICommandBuilder.BarcodeSymbology;
@@ -23,6 +24,7 @@ import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class EnglishReceiptsImpl extends ILocalizeReceipts {
@@ -57,6 +59,18 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
 
 //        builder.appendBitmapWithAlignment(icon, true, AlignmentPosition.Center);
 
+        builder.appendAlignment(AlignmentPosition.Center);
+        builder.appendMultiple(("General Note \n").getBytes(encoding), 2, 2);
+        builder.append(("\n").getBytes(encoding));
+
+
+        builder.appendAlignment(AlignmentPosition.Center);
+        if (!order.getGeneral_note().isEmpty())
+            builder.appendMultiple((order.getGeneral_note() + "\n").getBytes(encoding), 2, 2);
+        else
+            builder.appendMultiple(("No notes available" + "\n").getBytes(encoding), 2, 2);
+
+        builder.append(("\n\n").getBytes(encoding));
 
         Double total = 0.0;
         for (int i = 0; i < order.getCart().size(); i++) {
@@ -70,7 +84,7 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
 //        }
         DecimalFormat numberFormat = new DecimalFormat("##.##");
         String roundoff = numberFormat.format(total);
-        double tax = ((total * 7) / 100.0);
+        double tax = ((total * Double.parseDouble(String.valueOf(SharedPreference.INSTANCE.getKitchenTax(Objects.requireNonNull(MyAppContext.Companion.get()))))) / 100.0);
         double full_total = Double.valueOf(roundoff) + tax;
         String _full_total = numberFormat.format(full_total);
         builder.appendAlignment(AlignmentPosition.Center);
@@ -120,9 +134,7 @@ public class EnglishReceiptsImpl extends ILocalizeReceipts {
 
         builder.appendAlignment(AlignmentPosition.Center);
         builder.appendEmphasis(("Farandula Pizza & Restaurant\n").getBytes(encoding));
-        if (APIConstant.restaurant_address_cons.trim().isEmpty())
-            builder.append(("2846 Palm Ave, Hialeah, FL33010\\\\t\\\\t").getBytes(encoding));
-        else builder.append((APIConstant.restaurant_address_cons).getBytes(encoding));
+        builder.append((SharedPreference.INSTANCE.getKitchenAddress(MyAppContext.Companion.getContext())).getBytes(encoding));
 //        builder.append(("2846 Palm Ave\n").getBytes(encoding));
 //        builder.append(("Hialeah, FL33010\n").getBytes(encoding));
         builder.append(("786-332-3779\n").getBytes(encoding));

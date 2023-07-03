@@ -15,11 +15,18 @@ public class MainActivity extends CommonActivity {
         Communication.CommunicationResult.appContext = this;
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode != KeyEvent.KEYCODE_BACK) {                 // Do not close MainActivity.
-            return super.onKeyDown(keyCode, event);
-        } else {
-            return false;
-        }
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode != KeyEvent.KEYCODE_BACK) {                 // Do not close MainActivity.
+//            return super.onKeyDown(keyCode, event);
+//        } else {
+//            return false;
+//        }
+//    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

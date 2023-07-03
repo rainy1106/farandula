@@ -106,6 +106,8 @@ class SplashViewModel(
                     val restaurantImage = product.getString("restaurant_image")
                     val status = product.getString("status")
                     val entrydt = product.getString("entrydt")
+                    val tax_percent = product.getString("tax_percent")
+                    val restaurant_address = product.getString("restaurant_address")
                     val selectionClass = SelectionClass(
                         table_id = "",
                         restaurant_id = restaurantId,
@@ -115,7 +117,8 @@ class SplashViewModel(
                         seat_name = "",
                         restaurant_code = restaurantCode,
                         restaurant_image = restaurantImage,
-                        status = status, entrydt = entrydt
+                        status = status, entrydt = entrydt,
+                        tax_percent = tax_percent, restaurant_address = restaurant_address
                     )
                     arrayList.add(selectionClass)
                 }
@@ -175,7 +178,8 @@ class SplashViewModel(
                         restaurant_id = restaurantId,
                         table_name = table_name, seat_name = "", restaurant_name = "",
                         restaurant_image = "",
-                        status = status, entrydt = entrydt
+                        status = status, entrydt = entrydt,
+                        tax_percent = "", restaurant_address = ""
                     )
                     arrayList.add(selectionClass)
                 }
@@ -239,7 +243,9 @@ class SplashViewModel(
                         status = status,
                         entrydt = entrydt,
                         restaurant_code = "",
-                        restaurant_image = ""
+                        restaurant_image = "",
+                        restaurant_address = "",
+                        tax_percent = ""
                     )
                     arrayList.add(categoryObj)
                 }

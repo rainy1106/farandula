@@ -42,7 +42,7 @@ class CommonApi {
     @SuppressLint("HardwareIds")
     fun getDeviceId(context: Context): String {
 
-      return  android.provider.Settings.Secure.getString(
+        return android.provider.Settings.Secure.getString(
             context.contentResolver,
             android.provider.Settings.Secure.ANDROID_ID
         );
@@ -668,12 +668,25 @@ class CommonApi {
                 gson.fromJson(response, VerifyCode.Response::class.java)
             mEventHandler.onComplete()
             if (verifyCodeResponse.status) {
+                SharedPreference.setRestaurantId(
+                    context,
+                    verifyCodeResponse.data.result.restaurant_id
+                )
                 SharedPreference.setRestaurantKitchen(context, verifyCodeResponse.data.result)
-                SharedPreference.setKitchenAddress(context,verifyCodeResponse.data.result.restaurant_address)
-                APIConstant.restaurant_address_cons = verifyCodeResponse.data.result.restaurant_address
+                SharedPreference.setKitchenAddress(
+                    context,
+                    verifyCodeResponse.data.result.restaurant_address
+                )
+                SharedPreference.setKitchenTax(
+                    context,
+                    verifyCodeResponse.data.result.tax_percent.toFloat()
+                )
+                APIConstant.restaurant_address_cons =
+                    verifyCodeResponse.data.result.restaurant_address
+                APIConstant.tax_percent = verifyCodeResponse.data.result.tax_percent
                 mEventHandler.onSuccess()
             } else mEventHandler.onFailure()
-            Log.v("Response is: ", response.toString())
+            Log.v("Response is: ", response)
         } else {
             mEventHandler.onFailure(JSONObject(response).getString("message"))
         }
@@ -698,7 +711,10 @@ class CommonApi {
                     if (resultArray.length() > 0) {
                         for (i in 0 until resultArray.length()) {
                             val category = resultArray.getJSONObject(i)
-                            APIConstant.BANNER_URL = category.getString("banner_image")
+                            if (category.getString("restaurant_id")
+                                    .equals(SharedPreference.getRestaurantId(context))
+                            )
+                                APIConstant.BANNER_URL = category.getString("banner_image")
                         }
                     }
                     mEventHandler.onSuccess()

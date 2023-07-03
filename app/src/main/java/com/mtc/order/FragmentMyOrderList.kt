@@ -1,7 +1,13 @@
 package com.mtc.order
 
+import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +17,7 @@ import com.mtc.databinding.FragmentMyorderlistBinding
 import com.mtc.dialog.DialogPlaceOrder
 import com.mtc.general.BaseFragment
 import com.mtc.general.BaseViewModel
+import com.mtc.general.SharedPreference
 import com.mtc.general.initViewModel
 import com.mtc.interfaces.EventHandler
 import com.mtc.payment.FragmentPayment
@@ -31,6 +38,7 @@ class FragmentMyOrderList : BaseFragment<FragmentMyorderlistBinding, MyOrderList
         mDataBinding.viewModel = getViewModel()
         confirm_order_button.setOnClickListener(this)
         onClickAddMoreList.setOnClickListener(this)
+        onClickAddGeneral.setOnClickListener(this)
         setupRecyclerView()
         observers()
     }
@@ -38,7 +46,7 @@ class FragmentMyOrderList : BaseFragment<FragmentMyorderlistBinding, MyOrderList
     private fun observers() {
         mViewModel.totalCost.observe {
             paymentInfoTotalCost.text = it
-            FragmentPayment.placeOrder.grandTotal = it.replace("$","")
+            FragmentPayment.placeOrder.grandTotal = it.replace("$", "")
         }
 
 
@@ -47,32 +55,28 @@ class FragmentMyOrderList : BaseFragment<FragmentMyorderlistBinding, MyOrderList
             if (it == 1) {
                 placeOrder()
                 try {
-                    val dialogPlaceOrder =
-                        DialogPlaceOrder(
-                            requireActivity(),
-                            1,
-                            mViewModel._animationOne,
-                            object : FragmentConfirmOrder.ReturnToFragment {
-                                override fun returnToFragment() {
+                    val dialogPlaceOrder = DialogPlaceOrder(requireActivity(),
+                        1,
+                        mViewModel._animationOne,
+                        object : FragmentConfirmOrder.ReturnToFragment {
+                            override fun returnToFragment() {
 
-                                }
-                            })
+                            }
+                        })
                     dialogPlaceOrder.show()
                 } catch (ex: Exception) {
                     mViewModel._animationOne.value = 2
                 }
             } else {
                 try {
-                    val dialogPlaceOrder =
-                        DialogPlaceOrder(
-                            requireActivity(),
-                            2,
-                            mViewModel._animationOne,
-                            object : FragmentConfirmOrder.ReturnToFragment {
-                                override fun returnToFragment() {
-                                    // placeOrder()
-                                }
-                            })
+                    val dialogPlaceOrder = DialogPlaceOrder(requireActivity(),
+                        2,
+                        mViewModel._animationOne,
+                        object : FragmentConfirmOrder.ReturnToFragment {
+                            override fun returnToFragment() {
+                                // placeOrder()
+                            }
+                        })
                     dialogPlaceOrder.show()
                 } catch (ex: Exception) {
 
@@ -96,7 +100,7 @@ class FragmentMyOrderList : BaseFragment<FragmentMyorderlistBinding, MyOrderList
             override fun onFailure(toString: String) {
                 super.onFailure(toString)
                 confirm_order_button.isClickable = true
-                Toast.makeText(requireContext(),toString,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), toString, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -145,8 +149,7 @@ class FragmentMyOrderList : BaseFragment<FragmentMyorderlistBinding, MyOrderList
         val lineDivider = ContextCompat.getDrawable(requireContext(), R.drawable.line_divider)
         recyclerViewPaymentInformation.addItemDecoration(
             SimpleDividerItemDecoration(
-                requireContext(),
-                lineDivider!!
+                requireContext(), lineDivider!!
             )
         )
         recyclerViewPaymentInformation.scheduleLayoutAnimation()
@@ -171,14 +174,32 @@ class FragmentMyOrderList : BaseFragment<FragmentMyorderlistBinding, MyOrderList
                 if (OrderListViewModel.orderListSelected.size > 0) {
                     confirm_order_button.isClickable = false
                     mViewModel._animationOne.value = 1
-                } else
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.please_select_orders), Toast.LENGTH_SHORT
-                    ).show()
+                } else Toast.makeText(
+                    requireContext(), getString(R.string.please_select_orders), Toast.LENGTH_SHORT
+                ).show()
             }
             R.id.onClickAddMoreList -> {
                 replaceFragment(FragmentOrderList.newInstance())
+            }
+            R.id.onClickAddGeneral -> {
+                val dialog = Dialog(requireContext())
+                dialog.setContentView(R.layout.dialog_layout)
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.setCancelable(false)
+                val editTextGeneral = dialog.findViewById<EditText>(R.id.editTextGeneral)
+                val submit = dialog.findViewById<Button>(R.id.submit)
+                val freeImage = dialog.findViewById<ImageView>(R.id.freeImage)
+
+                submit.setOnClickListener {
+                    OrderListViewModel.generalNote = editTextGeneral.text.toString()
+                    dialog.dismiss()
+                }
+                freeImage.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+                dialog.show()
             }
         }
     }

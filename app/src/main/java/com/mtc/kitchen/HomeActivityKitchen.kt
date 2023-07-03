@@ -12,6 +12,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.airbnb.lottie.LottieDrawable
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.mtc.R
 import com.mtc.api.APIConstant
 import com.mtc.api.CommonApi
@@ -29,13 +32,14 @@ class HomeActivityKitchen : FragmentActivity(), View.OnClickListener, EventHandl
     private var tab_value: Int = 0
     private lateinit var binding: ActivityHomeKitchenBinding
     var banner: MutableLiveData<String> = MutableLiveData()
-
+    private lateinit var analytics: FirebaseAnalytics
     companion object {
         var _messageHome = MutableLiveData<String>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        analytics = Firebase.analytics
         binding = ActivityHomeKitchenBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
@@ -265,7 +269,6 @@ class HomeActivityKitchen : FragmentActivity(), View.OnClickListener, EventHandl
     }
 
     private fun setBannerV() {
-//        val urlLine: String = APIConstant().getApiBaseUrl(APIConstant.BANNER)
         val commonApi = CommonApi()
         try {
             commonApi.getBanner(this@HomeActivityKitchen, object : EventHandler {
@@ -281,44 +284,6 @@ class HomeActivityKitchen : FragmentActivity(), View.OnClickListener, EventHandl
         }
 
     }
-//    private fun setBannerV() {
-//        val urlLine: String = APIConstant().getApiBaseUrl(APIConstant.BANNER)
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val rss = NetworkUtility.APIrequest(urlLine)
-//            withContext(Dispatchers.Main) {
-////                val commonApi = CommonApi()
-//                try {
-//                    val _banner = getBanner(rss.toString())
-//                    banner.value = _banner
-//                } catch (ex: Exception) {
-//                    setBannerV()
-//                }
-//
-//                // call to UI thread
-//                //isLoadingData = false
-//                //showProgress.value = false
-//            }
-//        }
-//    }
-
-    private fun getBanner(response: String): String {
-        val jsonObject = JSONObject(response)
-        Log.v("Response is: ", jsonObject.toString())
-        val statusB = jsonObject.getBoolean("status")
-        if (statusB) {
-            val data: JSONObject = jsonObject.getJSONObject("data")
-            val resultArray = data.getJSONArray("result")
-            if (resultArray.length() > 0) {
-                for (i in 0 until resultArray.length()) {
-                    val category = resultArray.getJSONObject(i)
-                    return category.getString("banner_image")
-                }
-            }
-            // mEventHandler.onSuccess()
-        }
-        Log.v("Response is: ", response.toString())
-        return ""
-    }
 
     override fun onSuccess() {
         super.onSuccess()
@@ -332,12 +297,8 @@ class HomeActivityKitchen : FragmentActivity(), View.OnClickListener, EventHandl
 
     private fun replaceFragment(fragment: Fragment) {
         val manager = supportFragmentManager
-//        var prevFragment = manager.findFragmentByTag(fragment::class.java.simpleName)
-//        if (prevFragment == null) // if none were found, create it
-//            prevFragment = fragment
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.container, fragment, fragment::class.java.simpleName)
-//        transaction.addToBackStack(null)
         transaction.commit()
     }
 

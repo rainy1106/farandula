@@ -134,32 +134,32 @@ abstract class BaseFragment<B : ViewDataBinding, V : BaseViewModel> : Fragment()
     }
 
 
-//    fun showLoader(message: String = getString(R.string.loading)) {
-//        try {
-//            requireActivity().runOnUiThread {
-//                progressLoader.apply {
-//                    setProgressStyle(ProgressDialog.STYLE_SPINNER) // Progress Dialog Style Spinner
-//                    setMessage(message)
-//                    setCancelable(false)
-//                    show() // Display Progress Dialog
-//                }
-//            }
-//        } catch (ex: Exception) {
-//            ex.printStackTrace()
-//        }
-//    }
+    fun showLoader(message: String = getString(R.string.loading)) {
+        try {
+            requireActivity().runOnUiThread {
+                progressLoader.apply {
+                    setProgressStyle(ProgressDialog.STYLE_SPINNER) // Progress Dialog Style Spinner
+                    setMessage(message)
+                    setCancelable(false)
+                    show() // Display Progress Dialog
+                }
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
 
-//    fun hideLoader() {
-//        try {
-//            requireActivity().runOnUiThread {
-//                if (progressLoader.isShowing)
-//                    progressLoader.hide()
-//            }
-//        } catch (ex: Exception) {
-//            ex.printStackTrace()
-//        }
-//
-//    }
+    fun hideLoader() {
+        try {
+            requireActivity().runOnUiThread {
+                if (progressLoader.isShowing)
+                    progressLoader.hide()
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+
+    }
 
     fun Fragment?.runOnUiThread(action: () -> Unit) {
         this ?: return

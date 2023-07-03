@@ -38,14 +38,14 @@ open class BaseViewModel : ViewModel() {
 
     }
 
-    val readyCount: LiveData<String> get() = _readyCount
-    var _readyCount: MutableLiveData<String> = MutableLiveData()
+//    val readyCount: LiveData<String> get() = _readyCount
+//    var _readyCount: MutableLiveData<String> = MutableLiveData()
 
     val newOrderCount: LiveData<String> get() = _newOrderCount
     var _newOrderCount: MutableLiveData<String> = MutableLiveData()
 
-    val upComingCount: LiveData<String> get() = _upComingCount
-    var _upComingCount: MutableLiveData<String> = MutableLiveData()
+//    val upComingCount: LiveData<String> get() = _upComingCount
+//    var _upComingCount: MutableLiveData<String> = MutableLiveData()
 
 
     val toBePrint: LiveData<String> get() = _toBePrint
@@ -56,9 +56,9 @@ open class BaseViewModel : ViewModel() {
 
     fun updateNewOrderCount(valueN: String, valueU: String, valueR: String, valueP: String) {
         _newOrderCount.value = valueN
-        _upComingCount.value = valueU
-        _readyCount.value = valueR
-        _toBePrint.value = valueP
+//        _upComingCount.value = valueU
+//        _readyCount.value = valueR
+//        _toBePrint.value = valueP
     }
 
     fun isInternetConnected(context: Context): Boolean {

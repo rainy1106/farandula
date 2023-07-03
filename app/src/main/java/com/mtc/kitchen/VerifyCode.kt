@@ -24,7 +24,8 @@ class VerifyCode {
         var restaurant_image: String,
         var restaurant_address: String,
         var status: String,
-        var entrydt: String
+        var entrydt: String,
+        var tax_percent: String
     )
 
 }

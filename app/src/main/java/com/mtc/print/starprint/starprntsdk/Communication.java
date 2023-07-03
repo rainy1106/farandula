@@ -7,6 +7,7 @@ import android.os.Looper;
 
 import androidx.core.util.Pair;
 
+import com.mtc.general.SharedPreference;
 import com.mtc.print.starprint.starprntsdk.Communication.CommunicationResult;
 import com.mtc.print.starprint.starprntsdk.Communication.Result;
 import com.starmicronics.stario.StarIOPort;
@@ -185,7 +186,7 @@ public class Communication {
         switch (communicationResult.getResult()) {
             case Success:
                 builder.append("Success!");
-                if (CommunicationResult.count < 1) {
+                if (CommunicationResult.count < 1 && Boolean.TRUE.equals(SharedPreference.INSTANCE.isKitchen(CommunicationResult.appContext))) {
                     CommunicationResult.count = CommunicationResult.count + 1;
                     Intent intent = new Intent(CommunicationResult.appContext, MainActivity.class);
                     CommunicationResult.appContext.startActivity(intent);

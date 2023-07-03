@@ -29,6 +29,7 @@ class OrderListItem {
         var datetime: String,
         var extra_items: String,
         var instractions: String,
+        var general_note: String,
         var sub_total: String,
         var discount: String,
         var txn_amount: String,
@@ -70,6 +71,12 @@ class OrderListItem {
 
         fun getSubTableNameOnly(): String {
             return seat_name.replace("Seat", "").trim()
+        }
+
+        fun getGeneralNote(): String {
+            return if (general_note.isEmpty().not())
+                "General Note : ".plus(general_note)
+            else "General Note : No notes available"
         }
 
         fun getTDate(): String? {

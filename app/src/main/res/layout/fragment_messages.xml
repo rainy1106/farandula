@@ -205,7 +205,7 @@
                                                 android:id="@+id/sendButton"
                                                 android:gravity="center"
                                                 android:background="@drawable/circle_background_black"
-                                                android:layout_width="@dimen/_60sdp"
+                                                android:layout_width="@dimen/_40sdp"
                                                 android:layout_height="match_parent">
 
                                             <ImageView

@@ -52,23 +52,47 @@
                     android:textSize="@dimen/_20sdp"
                     android:visibility="gone" />
 
-            <Button
-                    android:id="@+id/onClickAddMoreList"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="@dimen/_13sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_13sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@drawable/button_selector_effect_reverse"
-                    android:gravity="center"
-                    android:padding="@dimen/_6sdp"
-                    android:text="@string/add_more_items"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_selector_effect"
-                    android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold" />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_5sdp"
+                    android:gravity="end"
+                    android:layout_height="wrap_content">
+
+                <Button
+                        android:id="@+id/onClickAddMoreList"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/button_selector_effect_reverse"
+                        android:gravity="center"
+                        android:padding="@dimen/_6sdp"
+                        android:text="@string/add_more_items"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_selector_effect"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+                <Button
+                        android:id="@+id/onClickAddGeneral"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/button_selector_effect_reverse"
+                        android:gravity="center"
+                        android:padding="@dimen/_6sdp"
+                        android:text="@string/add_general_note"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_selector_effect"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
 

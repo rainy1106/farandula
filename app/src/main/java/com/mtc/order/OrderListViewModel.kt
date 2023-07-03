@@ -16,6 +16,7 @@ class OrderListViewModel(
         var instractions: String = ""
         var extraItems = ArrayList<String>()
         var orderListSelected = ArrayList<OrderItem>()
+        var generalNote = ""
     }
 
     //  private var networkState: ConnectionModel? = null

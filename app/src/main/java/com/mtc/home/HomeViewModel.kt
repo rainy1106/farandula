@@ -1,11 +1,14 @@
 package com.mtc.home
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.mtc.api.APIConstant
+import com.mtc.api.CommonApi
 import com.mtc.general.BaseViewModel
 import com.mtc.general.SharedPreference
+import com.mtc.interfaces.EventHandler
 import com.mtc.network.ConnectionModel
 import com.mtc.utils.MyAppContext
 import com.mtc.utils.NetworkUtility
@@ -108,72 +111,21 @@ class HomeViewModel : BaseViewModel() {
         return arrayList
     }
 
-    fun setBanner() {
-        //   showProgress.value = true
-        val urlLine: String = APIConstant().getApiBaseUrl(APIConstant.BANNER)
-        CoroutineScope(Dispatchers.IO).launch {
-            val rss = NetworkUtility.APIrequest(urlLine)
-            withContext(Dispatchers.Main) {
-//                val commonApi = CommonApi()
-                try {
-                    val _banner = getBanner(rss.toString())
-                    banner.value = _banner
-                } catch (ex: Exception) {
-//                    Toast.makeText(context, "Network Error, Please try again..", Toast.LENGTH_SHORT)
-//                        .show()
-                    //setBanner()
+    fun setBanner(context: Context) {
+        val commonApi = CommonApi()
+        try {
+            commonApi.getBanner(context, object : EventHandler {
+                override fun onSuccess() {
+                    super.onSuccess()
+                    banner.value = APIConstant.BANNER_URL
                 }
+            })
 
-                // call to UI thread
-                //isLoadingData = false
-                //showProgress.value = false
-            }
+        } catch (ex: Exception) {
+//            setBannerV()
         }
     }
 
-    private fun getBanner(response: String): String {
-        val jsonObject = JSONObject(response)
-        Log.v("Response is: ", jsonObject.toString())
-        val statusB = jsonObject.getBoolean("status")
-        if (statusB) {
-            val data: JSONObject = jsonObject.getJSONObject("data")
-            val resultArray = data.getJSONArray("result")
-            if (resultArray.length() > 0) {
-                for (i in 0 until resultArray.length()) {
-                    val category = resultArray.getJSONObject(i)
-                    return category.getString("banner_image")
-                }
-            }
-            // mEventHandler.onSuccess()
-        }
-        Log.v("Response is: ", response.toString())
-        return ""
-    }
-
-//    fun parseJsonString(str: String): ArrayList<OrderItem> {
-//        val jsonOb = JSONObject(str)
-//        val list: ArrayList<OrderItem> = arrayListOf()
-//        val jsonArray = jsonOb.getJSONArray("data");
-//
-//        for (j in 0..jsonArray.length() - 1) {
-//            val user = OrderItem(
-//                jsonArray.getJSONObject(j).getString("id"),
-//                jsonArray.getJSONObject(j).getString("email"),
-//                jsonArray.getJSONObject(j).getString("first_name"),
-//                jsonArray.getJSONObject(j).getString("last_name"),
-//                jsonArray.getJSONObject(j).getString("avatar")
-//            )
-//            list.add(user)
-//        }
-//        return list
-//    }
-
-    //    fun setCategories(activity: HomeActivity) {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val commonApi = CommonApi()
-//            commonApi.getCategories(activity, activity)
-//        }
-//    }
     private var networkState: ConnectionModel? = null
     fun setNetworkState(connectionModel: ConnectionModel) {
         networkState = connectionModel
